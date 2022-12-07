@@ -14,11 +14,52 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Example {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model UserData {
+ id                 String @id @default(autoincrement())
+ lastName           String
+ firstName          String
+ mail               String @unique
+ interests          Interests
+ picture            String
+ company            CompanyData
+ createdAt          DateTime @default(now())
 }
+
+model Interests {
+  user              UserData @relation()
+  webDevelopment    Boolean @default(false)
+  cyberSecurity     Boolean @default(false)
+  mobileDev         Boolean @default(false)
+  design            Boolean @default(false)
+  dataScience       Boolean @default(false)
+  coding            Boolean @default(false)
+}
+
+model CompanyData {
+  user            UserData @relation()
+  isAssociated    Boolean @default(false)
+  companyName     String @default("")
+  companyEmail    String @default("")
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Necessary for Next auth
 model Account {
