@@ -11,10 +11,10 @@ async function main() {
       interests: {
         create: {
           webDevelopment: true,
-          cyberSecurity: false,
+          cyberSecurity: true,
           mobileDev: true,
           design: true,
-          dataScience: false,
+          dataScience: true,
           coding: true,
         },
       },
