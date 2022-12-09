@@ -15,51 +15,34 @@ datasource db {
 }
 
 model UserData {
- id                 String @id @default(autoincrement())
- lastName           String
- firstName          String
- mail               String @unique
- interests          Interests
- picture            String
- company            CompanyData
- createdAt          DateTime @default(now())
+  id        Int          @id @default(autoincrement())
+  lastName  String
+  firstName String
+  mail      String       @unique
+  interests Interests?
+  picture   String
+  company   CompanyData?
+  createdAt DateTime     @default(now())
 }
 
 model Interests {
-  user              UserData @relation()
-  webDevelopment    Boolean @default(false)
-  cyberSecurity     Boolean @default(false)
-  mobileDev         Boolean @default(false)
-  design            Boolean @default(false)
-  dataScience       Boolean @default(false)
-  coding            Boolean @default(false)
+  user           UserData @relation(fields: [userID], references: [id])
+  userID         Int      @unique
+  webDevelopment Boolean  @default(false)
+  cyberSecurity  Boolean  @default(false)
+  mobileDev      Boolean  @default(false)
+  design         Boolean  @default(false)
+  dataScience    Boolean  @default(false)
+  coding         Boolean  @default(false)
 }
 
 model CompanyData {
-  user            UserData @relation()
-  isAssociated    Boolean @default(false)
-  companyName     String @default("")
-  companyEmail    String @default("")
+  user         UserData @relation(fields: [userID], references: [id])
+  userID       Int      @unique
+  isAssociated Boolean  @default(false)
+  companyName  String   @default("")
+  companyEmail String   @default("")
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Necessary for Next auth
 model Account {
