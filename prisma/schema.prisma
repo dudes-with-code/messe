@@ -28,20 +28,20 @@ model UserData {
 model Interests {
   user           UserData @relation(fields: [userID], references: [id])
   userID         Int      @unique
-  webDevelopment Boolean  @default(false)
-  cyberSecurity  Boolean  @default(false)
-  mobileDev      Boolean  @default(false)
-  design         Boolean  @default(false)
-  dataScience    Boolean  @default(false)
-  coding         Boolean  @default(false)
+  webDevelopment Boolean
+  cyberSecurity  Boolean
+  mobileDev      Boolean
+  design         Boolean
+  dataScience    Boolean
+  coding         Boolean
 }
 
 model CompanyData {
   user         UserData @relation(fields: [userID], references: [id])
   userID       Int      @unique
-  isAssociated Boolean  @default(false)
-  companyName  String   @default("")
-  companyEmail String   @default("")
+  isAssociated Boolean
+  companyName  String
+  companyEmail String
 }
 
 // Necessary for Next auth
