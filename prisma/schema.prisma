@@ -20,7 +20,7 @@ model UserData {
   firstName String
   mail      String       @unique
   interests Interests?
-  picture   String
+  picture   String       @db.LongText
   company   CompanyData?
   createdAt DateTime     @default(now())
 }
