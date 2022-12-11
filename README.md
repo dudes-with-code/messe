@@ -1,13 +1,12 @@
 # Setup this App
 
 
-## db setup
+>## db setup
+>
+>- install docker
+>- run ./install.sh
+>- npm run db-seed
 
-- install docker
-- in project folder run "docker-compose up -d"
-- npx prisma db push
-
-## run program
-
-- npm run db-seed
-- npm run dev
+>## run program
+>
+>- npm run dev
