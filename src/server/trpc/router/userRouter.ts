@@ -80,11 +80,11 @@ export const userRouter = router({
         }),
       })
     )
-      .mutation(({ctx, input}) => {
-        return ctx.prisma.userData.update({
-          where: {mail: input.mail},
-          data: {
-            mail: input.mail,
+    .mutation(({ ctx, input }) => {
+      return ctx.prisma.userData.update({
+        where: { mail: input.mail },
+        data: {
+          mail: input.mail,
           lastName: input.lastName,
           firstName: input.firstName,
           picture: input.picture,
@@ -105,8 +105,14 @@ export const userRouter = router({
               companyName: input.company.companyName,
             },
           },
-          }
-        })
-      })
-  
+        },
+      });
+    }),
+  deleteUserByMail: publicProcedure
+    .input(z.object({ mail: z.string() }))
+    .mutation(({ ctx, input }) => {
+      return ctx.prisma.userData.delete({
+        where: { mail: input.mail },
+      });
+    }),
 });
