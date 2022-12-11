@@ -41,4 +41,9 @@ export const userRouter = router({
 
       })
     }),
+  getUserByMail: publicProcedure
+    .input(z.object({ mail: z.string() }))
+    .query(({ ctx, input }) => {
+      return ctx.prisma.userData.findFirst({ where: { mail: input.mail } })
+    })
 })
