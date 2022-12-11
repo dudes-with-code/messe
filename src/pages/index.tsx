@@ -52,7 +52,10 @@ const Home: NextPage = () => {
     console.log("user added!");
   }
 
-  const user = trpc.newUser.getUserByMail.useQuery({ mail: "test@test.de" });
+  let getUser = trpc.newUser.getUserByMail.useMutation();
+  function getSpecificUser() {
+    getUser.mutate({ mail: "test@test.de" });
+  }
 
   return (
     <>
@@ -69,8 +72,11 @@ const Home: NextPage = () => {
         {mutation.error && (
           <p>Something went wrong! {mutation.error.message}</p>
         )}
-        <button onClick={createUser}>Get specific user</button>
-        {user && <div>Hello there {user.data?.firstName} !</div>}
+        <button onClick={getSpecificUser}>Get specific user</button>
+        {getUser.isIdle && <div>Please click the search user button!</div>}
+        {getUser.isSuccess && (
+          <div>Hello there {getUser.data?.firstName} !</div>
+        )}
       </main>
     </>
   );
