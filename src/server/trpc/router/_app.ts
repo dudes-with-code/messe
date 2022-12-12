@@ -4,7 +4,7 @@ import { authRouter } from "./auth";
 import { userRouter } from "./userRouter";
 
 export const appRouter = router({
-  newUser: userRouter,
+  userData: userRouter,
 
   auth: authRouter,
 });

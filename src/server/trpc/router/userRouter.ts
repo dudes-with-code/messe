@@ -127,6 +127,7 @@ export const userRouter = router({
             }
         })
       return ctx.prisma.$transaction([deleteInterests, deleteCompanyData, deleteUser])
+    }),
 
 
   getAllUsersFromToday: publicProcedure
@@ -142,4 +143,8 @@ export const userRouter = router({
       });
 
     }),
+    getAllUsers: publicProcedure
+    .query(({ctx}) => {
+        return ctx.prisma.userData.findMany()
+    })
 });
