@@ -26,7 +26,7 @@ const Home: NextPage = () => {
     },
   };
 
-  const mutation = trpc.newUser.createUser.useMutation();
+  const mutation = trpc.userData.createUser.useMutation();
   function createUser() {
     mutation.mutate({
       mail: test.mail,
@@ -50,16 +50,40 @@ const Home: NextPage = () => {
     console.log("user added!");
   }
 
-  let getUser = trpc.newUser.getUserByMail.useMutation();
+  let getUser = trpc.userData.getUserByMail.useMutation();
   function getSpecificUser() {
     getUser.mutate({ mail: "test@test.de" });
   }
-
+  let todaysUsers = trpc.userData.getAllUsersFromToday.useMutation();
+  function getTodaysUsers() {
+    let date = new Date();
+    let yesterday =
+      date.getFullYear() +
+      "-" +
+      (date.getMonth() + 1) +
+      "-" +
+      (date.getDate() - 1);
+    let tomrrow =
+      date.getFullYear() +
+      "-" +
+      (date.getMonth() + 1) +
+      "-" +
+      (date.getDate() + 1);
+    todaysUsers.mutate({ tomorrow: tomrrow, yesterday: yesterday });
+    if (todaysUsers.isSuccess) {
+      todaysUsers.data?.forEach((element) => {
+        console.log(element.id, ":", element.firstName, element.lastName);
+      });
+    }
+  }
   return (
     <>
       <Head>
         <title>ITS-Messe</title>
-        <meta name="description" content="A project to add new interested Users to the Company Horizon" />
+        <meta
+          name="description"
+          content="A project to add new interested Users to the Company Horizon"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
@@ -75,7 +99,7 @@ const Home: NextPage = () => {
         {getUser.isSuccess && (
           <div>Hello there {getUser.data?.firstName} !</div>
         )}
-        
+        <button onClick={getTodaysUsers}>Get All Users from Today</button>
       </main>
     </>
   );
