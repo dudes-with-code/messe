@@ -2,7 +2,7 @@ version: '3'
  
 services:
   cdb:
-    image: mysql:5.7
+    image: mariadb
     container_name: cdb
     environment:
       MYSQL_ROOT_PASSWORD: "${COMPANY_MYSQL_ROOT_PASSWORD}"
@@ -30,7 +30,7 @@ services:
 
 
   db:
-    image: mysql:5.7
+    image: mariadb
     container_name: db
     environment:
       MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
