@@ -109,6 +109,26 @@ export const userRouter = router({
       });
     }),
 
+  deleteUserByID: publicProcedure
+    .input(z.object({ id: z.number() }))
+    .mutation(({ ctx, input }) => {
+        const deleteInterests = ctx.prisma.interests.delete({
+            where: {
+                userID: input.id}
+        })
+        const deleteCompanyData = ctx.prisma.companyData.delete({
+            where: {
+                userID: input.id
+            }
+        })
+        const deleteUser = ctx.prisma.userData.delete({
+            where: {
+                id: input.id
+            }
+        })
+      return ctx.prisma.$transaction([deleteInterests, deleteCompanyData, deleteUser])
+
+
   getAllUsersFromToday: publicProcedure
     .input(z.object({ tomorrow: z.string(), yesterday: z.string() }))
     .mutation(({ ctx, input }) => {
@@ -120,5 +140,6 @@ export const userRouter = router({
           },
         },
       });
+
     }),
 });
