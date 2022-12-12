@@ -54,7 +54,10 @@ const Home: NextPage = () => {
   function getSpecificUser() {
     getUser.mutate({ mail: "test@test.de" });
   }
-
+  let deletedUser = trpc.newUser.deleteUserByID.useMutation()
+ function deleteUser () {
+    deletedUser.mutate({id: 4})
+ }
   return (
     <>
       <Head>
@@ -75,7 +78,8 @@ const Home: NextPage = () => {
         {getUser.isSuccess && (
           <div>Hello there {getUser.data?.firstName} !</div>
         )}
-        
+        <button onClick={deleteUser}>Delete the funny test user</button>
+       {deletedUser.isSuccess && <p>User deleted</p>} 
       </main>
     </>
   );

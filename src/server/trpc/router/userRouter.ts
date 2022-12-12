@@ -108,11 +108,23 @@ export const userRouter = router({
         },
       });
     }),
-  deleteUserByMail: publicProcedure
-    .input(z.object({ mail: z.string() }))
+  deleteUserByID: publicProcedure
+    .input(z.object({ id: z.number() }))
     .mutation(({ ctx, input }) => {
-      return ctx.prisma.userData.delete({
-        where: { mail: input.mail },
-      });
+        const deleteInterests = ctx.prisma.interests.delete({
+            where: {
+                userID: input.id}
+        })
+        const deleteCompanyData = ctx.prisma.companyData.delete({
+            where: {
+                userID: input.id
+            }
+        })
+        const deleteUser = ctx.prisma.userData.delete({
+            where: {
+                id: input.id
+            }
+        })
+      return ctx.prisma.$transaction([deleteInterests, deleteCompanyData, deleteUser])
     }),
 });
