@@ -108,6 +108,7 @@ export const userRouter = router({
         },
       });
     }),
+
   deleteUserByID: publicProcedure
     .input(z.object({ id: z.number() }))
     .mutation(({ ctx, input }) => {
@@ -126,5 +127,19 @@ export const userRouter = router({
             }
         })
       return ctx.prisma.$transaction([deleteInterests, deleteCompanyData, deleteUser])
+
+
+  getAllUsersFromToday: publicProcedure
+    .input(z.object({ tomorrow: z.string(), yesterday: z.string() }))
+    .mutation(({ ctx, input }) => {
+      return ctx.prisma.userData.findMany({
+        where: {
+          createdAt: {
+            lt: new Date(input.tomorrow),
+            gt: new Date(input.yesterday),
+          },
+        },
+      });
+
     }),
 });
