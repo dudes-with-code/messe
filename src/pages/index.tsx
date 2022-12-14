@@ -55,7 +55,7 @@ const Home: NextPage = () => {
     getUser.mutate({ mail: "test@test.de" });
   }
 
-  let deletedUser = trpc.newUser.deleteUserByID.useMutation()
+  let deletedUser = trpc.userData.deleteUserByID.useMutation()
  function deleteUser () {
     deletedUser.mutate({id: 4})
  }
@@ -82,7 +82,7 @@ const Home: NextPage = () => {
       });
     }
   }
-
+ let allUsers = trpc.userData.getAllUsers.useQuery()
   return (
     <>
       <Head>
@@ -111,7 +111,10 @@ const Home: NextPage = () => {
        {deletedUser.isSuccess && <p>User deleted</p>} 
 
         <button onClick={getTodaysUsers}>Get All Users from Today</button>
-
+        <>
+       {allUsers.isSuccess && allUsers.data?.forEach((element) => {
+           <p>{element.firstName}</p>})}
+           </>
       </main>
     </>
   );
