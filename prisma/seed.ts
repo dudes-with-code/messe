@@ -55,6 +55,17 @@ async function main() {
       },
     },
   });
+  await prisma.user.upsert({
+    where: {
+      email: "AdminUser@test.de",
+    },
+    update: {},
+    create: {
+      email: "AdminUser@test.de",
+      name: "AdminUser",
+      password: "password",
+    },
+  });
 }
 main()
   .then(async () => {
