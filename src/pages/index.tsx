@@ -1,11 +1,5 @@
-import { type NextPage } from "next";
-import Head from "next/head";
 
-import { trpc } from "../utils/trpc";
-import NewUser from "../types/apiTypes";
-import { userAgent } from "next/server";
-import { useSession, signIn } from "next-auth/react";
-import { getToken } from "next-auth/jwt";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const Home = () => {
     const { data: session } = useSession()
@@ -18,6 +12,7 @@ const Home = () => {
 
         <div>
             <p>Hello world </p>
+            <button onClick={() => signOut()}>Sign Out</button>
         </div>
     )
 

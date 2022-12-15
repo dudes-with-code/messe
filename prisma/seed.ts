@@ -1,78 +1,78 @@
 import { prisma } from "../src/server/db/client";
 
 async function main() {
-  await prisma.userData.upsert({
-    where: { mail: "test@test.de" },
-    update: {},
-    create: {
-      mail: "test@test.de",
-      lastName: "Bayindir",
-      firstName: "Pascal",
-      interests: {
+    await prisma.userData.upsert({
+        where: { mail: "test@test.de" },
+        update: {},
         create: {
-          webDevelopment: true,
-          cyberSecurity: true,
-          mobileDev: true,
-          design: true,
-          dataScience: true,
-          coding: true,
+            mail: "test@test.de",
+            lastName: "Bayindir",
+            firstName: "Pascal",
+            interests: {
+                create: {
+                    webDevelopment: true,
+                    cyberSecurity: true,
+                    mobileDev: true,
+                    design: true,
+                    dataScience: true,
+                    coding: true,
+                },
+            },
+            picture: "abcd",
+            company: {
+                create: {
+                    isAssociated: true,
+                    companyName: "Bosch",
+                    companyEmail: "pascal@bosch.com",
+                },
+            },
         },
-      },
-      picture: "abcd",
-      company: {
+    });
+    await prisma.userData.upsert({
+        where: { mail: "test2@test.de" },
+        update: {},
         create: {
-          isAssociated: true,
-          companyName: "Bosch",
-          companyEmail: "pascal@bosch.com",
+            mail: "test2@test.de",
+            lastName: "Ihring",
+            firstName: "Marius",
+            interests: {
+                create: {
+                    webDevelopment: true,
+                    cyberSecurity: false,
+                    mobileDev: true,
+                    design: true,
+                    dataScience: false,
+                    coding: true,
+                },
+            },
+            picture: "abcd",
+            company: {
+                create: {
+                    isAssociated: true,
+                    companyName: "Bosch",
+                    companyEmail: "marius@bosch.com",
+                },
+            },
         },
-      },
-    },
-  });
-  await prisma.userData.upsert({
-    where: { mail: "test2@test.de" },
-    update: {},
-    create: {
-      mail: "test2@test.de",
-      lastName: "Ihring",
-      firstName: "Marius",
-      interests: {
+    });
+    await prisma.admin.upsert({
+        where: {
+            email: "AdminUser@test.de",
+        },
+        update: {},
         create: {
-          webDevelopment: true,
-          cyberSecurity: false,
-          mobileDev: true,
-          design: true,
-          dataScience: false,
-          coding: true,
+            email: "AdminUser@test.de",
+            name: "AdminUser",
+            password: "password",
         },
-      },
-      picture: "abcd",
-      company: {
-        create: {
-          isAssociated: true,
-          companyName: "Bosch",
-          companyEmail: "marius@bosch.com",
-        },
-      },
-    },
-  });
-  await prisma.user.upsert({
-    where: {
-      email: "AdminUser@test.de",
-    },
-    update: {},
-    create: {
-      email: "AdminUser@test.de",
-      name: "AdminUser",
-      password: "password",
-    },
-  });
+    });
 }
 main()
-  .then(async () => {
-    await prisma.$disconnect();
-  })
-  .catch(async (e) => {
-    console.error(e);
-    await prisma.$disconnect();
-    process.exit(1);
-  });
+    .then(async () => {
+        await prisma.$disconnect();
+    })
+    .catch(async (e) => {
+        console.error(e);
+        await prisma.$disconnect();
+        process.exit(1);
+    });

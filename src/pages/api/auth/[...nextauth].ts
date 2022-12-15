@@ -37,7 +37,7 @@ export const authOptions: NextAuthOptions = {
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials, req) {
-                const res: any = await prisma.user.findFirst({
+                const res: any = await prisma.admin.findFirst({
                     where: {
                         name: credentials?.username
                     }
