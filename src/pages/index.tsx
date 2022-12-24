@@ -1,23 +1,10 @@
-
 import { useSession, signIn, signOut } from "next-auth/react";
 
 const Home = () => {
-    const { data: session } = useSession()
-    if (!session) {
-        return (
-            <button onClick={() => signIn()}>Log In</button>
-        )
-    }
-    return (
-
-        <div>
-            <p>Hello world </p>
-            <button onClick={() => signOut()}>Sign Out</button>
-        </div>
-    )
-
-}
+  return (
+    <div className="h-screen max-h-full w-screen bg-[#586f7c]">
+      <p>Company</p>
+    </div>
+  );
+};
 export default Home;
-
-
-

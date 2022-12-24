@@ -12,7 +12,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <Component {...pageProps} />
+      <Component {...pageProps} className="max-h-full max-w-full" />
     </SessionProvider>
   );
 };
