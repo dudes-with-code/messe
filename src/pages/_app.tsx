@@ -7,14 +7,14 @@ import { trpc } from "../utils/trpc";
 import "../styles/globals.css";
 
 const MyApp: AppType<{ session: Session | null }> = ({
-  Component,
-  pageProps: { session, ...pageProps },
+    Component,
+    pageProps: { session, ...pageProps },
 }) => {
-  return (
-    <SessionProvider session={session}>
-      <Component {...pageProps} className="max-h-full max-w-full" />
-    </SessionProvider>
-  );
+    return (
+        <SessionProvider session={session}>
+            <Component {...pageProps} className="max-h-full max-w-full" />
+        </SessionProvider>
+    );
 };
 
 export default trpc.withTRPC(MyApp);
