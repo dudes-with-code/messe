@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { StepperContext } from "../../../context/StepperContext";
+import PersonalDataStep from "../PersonalData/PersonalDataStep";
 
 export default function Step() {
   const { step, setStep } = useContext(StepperContext);
@@ -13,13 +14,19 @@ export default function Step() {
         </>
       );
     case 1:
-      return <div>Step 1</div>;
+      return <PersonalDataStep />;
     case 2:
-      return <div>Step 2</div>;
+      return <PersonalDataStep />;
     case 3:
       return <div>Step 3</div>;
     case 4:
       return <div>Step 4</div>;
+    case 5:
+      return <div>Step 5</div>;
+    case 6:
+      return <div>Step 6</div>;
+    case 7:
+      return <div>Step 7</div>;
     case 5:
       return (
         <>

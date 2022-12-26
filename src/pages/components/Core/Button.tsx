@@ -11,17 +11,9 @@ export default function Button({ type }: ButtonProps) {
   //implement different buttontypes
   switch (type) {
     case ButtonTypes.Next:
-      return (
-        <button onClick={() => setStep(step + 1)} className="m-2">
-          Next
-        </button>
-      );
+      return <button onClick={() => setStep(step + 1)}>Next</button>;
     case ButtonTypes.Back:
-      return (
-        <button onClick={() => setStep(step - 1)} className="m-2">
-          Back
-        </button>
-      );
+      return <button onClick={() => setStep(step - 1)}>Back</button>;
     default:
       return <div>Please Provide a ButtonType</div>;
   }
