@@ -11,6 +11,7 @@ import TopMiddleSVG from "./components/BackgroundSVGs/Start/top-middle-start";
 import TopRightSVG from "./components/BackgroundSVGs/Start/top-right-start";
 import BottomRightSVG from "./components/BackgroundSVGs/Steps/bottom-right-step";
 import CircularProgress from "./components/Core/CircularProgress";
+import { HiOutlineTicket } from "react-icons/hi";
 
 const Home = () => {
   const [user, setUser] = useState(NewUser);
@@ -27,13 +28,15 @@ const Home = () => {
                   <Step />
                 </div>
                 <div className="flex w-full justify-between">
-                  <Button type={ButtonTypes.Back} />
+                  {step != 1 && <Button type={ButtonTypes.Back} />}
                   {step != 1 && (
                     <CircularProgress number={step}>
                       <Button type={ButtonTypes.Next} />
                     </CircularProgress>
                   )}
-                  {step === 1 && <Button type={ButtonTypes.Next} />}
+                </div>
+                <div className="top-0 flex w-full items-center justify-center">
+                  {step === 1 && <Button type={ButtonTypes.Start} />}
                 </div>
               </RegisterStepper>
             </div>
@@ -54,6 +57,9 @@ const Home = () => {
         <div className="absolute bottom-0 right-0 z-10">
           {step != 1 && <BottomRightSVG />}
         </div>
+      </div>
+      <div className="rotate-270 absolute top-8 right-8 z-50 -rotate-90">
+        <HiOutlineTicket size={52} color={"#F1FFE7"} />
       </div>
     </div>
   );

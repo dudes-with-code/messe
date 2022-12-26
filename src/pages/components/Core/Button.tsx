@@ -21,6 +21,15 @@ export default function Button({ type }: ButtonProps) {
     }
     case ButtonTypes.Back:
       return <button onClick={() => setStep(step - 1)}>Back</button>;
+    case ButtonTypes.Start:
+      return (
+        <button
+          onClick={() => setStep(step + 1)}
+          className="flex w-40 content-center justify-between rounded-2xl bg-[#F4F4F9] p-2.5"
+        >
+          Get Started {<AiOutlineArrowRight size={26} />}
+        </button>
+      );
     default:
       return <div>Please Provide a ButtonType</div>;
   }
