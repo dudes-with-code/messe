@@ -17,8 +17,8 @@ const Home = () => {
   const [step, setStep] = useState(1);
 
   return (
-    <div className="absolute z-40 h-full max-h-full w-screen max-w-full bg-[#586f7c]">
-      <div className=" relative z-50 h-full w-full">
+    <div className="z-40 h-screen max-h-full w-full max-w-full bg-[#586f7c]">
+      <div className="relative z-50 h-full w-full">
         <UserContext.Provider value={{ user, setUser }}>
           <StepperContext.Provider value={{ step, setStep }}>
             <div className="h-full w-full p-5 text-xl">
@@ -40,17 +40,20 @@ const Home = () => {
           </StepperContext.Provider>
         </UserContext.Provider>
       </div>
-      <div className="absolute top-0 left-0 z-30">
-        <TopLeftSVG />
-      </div>
-      <div className="absolute top-0 left-0 z-20">
-        {(step === 1 || step === 7) && <TopMiddleSVG />}
-      </div>
-      <div className="absolute top-0 right-0 z-10">
-        {(step === 1 || step === 7) && <TopRightSVG />}
-      </div>
-      <div className="absolute bottom-0 right-0 z-10">
-        {step != 1 && <BottomRightSVG />}
+      <div className="top-0">
+        <div className="absolute -top-10 z-20">
+          {(step === 1 || step === 7) && <TopMiddleSVG />}
+        </div>
+        <div className="absolute top-0 left-0 z-30">
+          <TopLeftSVG />
+        </div>
+
+        <div className="absolute top-0 right-0 z-10">
+          {(step === 1 || step === 7) && <TopRightSVG />}
+        </div>
+        <div className="absolute bottom-0 right-0 z-10">
+          {step != 1 && <BottomRightSVG />}
+        </div>
       </div>
     </div>
   );
