@@ -15,10 +15,10 @@ const Home = () => {
     <UserContext.Provider value={{ user, setUser }}>
       <div className="h-screen max-h-full w-screen gap-3.5 bg-[#586f7c] p-5 text-xl">
         <RegisterStepper>
-          <div className="h-4/5 w-full">
+          <div className="mt-5 h-5/6 w-full">
             <Step />
           </div>
-          <div className="flex w-full justify-between">
+          <div className="mt-5 flex w-full justify-between">
             <Button type={ButtonTypes.Back} />
 
             <Button type={ButtonTypes.Next} />
