@@ -1,5 +1,4 @@
-import { useSession, signIn, signOut } from "next-auth/react";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { UserContext } from "./context/userDataContext";
 import { NewUser } from "./user/user";
 import { StepperContext } from "./context/StepperContext";
@@ -11,6 +10,7 @@ import TopLeftSVG from "./components/BackgroundSVGs/Start/top-left-start";
 import TopMiddleSVG from "./components/BackgroundSVGs/Start/top-middle-start";
 import TopRightSVG from "./components/BackgroundSVGs/Start/top-right-start";
 import BottomRightSVG from "./components/BackgroundSVGs/Steps/bottom-right-step";
+import CircularProgress from "./components/Core/CircularProgress";
 
 const Home = () => {
   const [user, setUser] = useState(NewUser);
@@ -28,7 +28,12 @@ const Home = () => {
                 </div>
                 <div className="flex w-full justify-between">
                   <Button type={ButtonTypes.Back} />
-                  <Button type={ButtonTypes.Next} />
+                  {step != 1 && (
+                    <CircularProgress number={step}>
+                      <Button type={ButtonTypes.Next} />
+                    </CircularProgress>
+                  )}
+                  {step === 1 && <Button type={ButtonTypes.Next} />}
                 </div>
               </RegisterStepper>
             </div>

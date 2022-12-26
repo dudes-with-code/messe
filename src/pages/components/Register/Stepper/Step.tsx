@@ -19,7 +19,7 @@ export default function Step() {
         </>
       );
     case 1:
-      return <StartStep />;
+      return <PersonalDataStep />;
     case 2:
       return <PersonalDataStep />;
     case 3:
