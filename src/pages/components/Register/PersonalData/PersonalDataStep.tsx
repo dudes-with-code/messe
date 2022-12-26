@@ -3,6 +3,7 @@ import { UserContext } from "../../../context/userDataContext";
 
 export default function PersonalDataStep() {
   const { user, setUser } = useContext(UserContext);
+
   async function handleFirstNameChange(
     event: React.ChangeEvent<HTMLInputElement>
   ) {
@@ -23,7 +24,7 @@ export default function PersonalDataStep() {
     console.log(user);
   }
   return (
-    <div className="flex-col">
+    <div className=" flex-col ">
       <input
         type="text"
         value={user.firstName}
