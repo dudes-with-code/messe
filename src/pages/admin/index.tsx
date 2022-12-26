@@ -1,6 +1,6 @@
 import { useSession, signIn, signOut } from "next-auth/react";
 import { trpc } from "../../utils/trpc";
-import AdminHeader from "../components/AdminHeader";
+import AdminHeader from "../components/Admin/AdminHeader";
 const Admin = () => {
   const { data: session } = useSession();
   const allUsers = trpc.userData.getAllUsers.useQuery();
