@@ -27,16 +27,13 @@ const Home = () => {
                 <div className="h-5/6">
                   <Step />
                 </div>
-                <div className="flex w-full justify-between">
+                <div className="top-0 flex w-full justify-between">
                   {step != 1 && <Button type={ButtonTypes.Back} />}
                   {step != 1 && (
                     <CircularProgress number={step}>
                       <Button type={ButtonTypes.Next} />
                     </CircularProgress>
                   )}
-                </div>
-                <div className="top-0 flex w-full items-center justify-center">
-                  {step === 1 && <Button type={ButtonTypes.Start} />}
                 </div>
               </RegisterStepper>
             </div>
