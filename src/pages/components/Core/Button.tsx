@@ -30,6 +30,15 @@ export default function Button({ type }: ButtonProps) {
           Get Started {<AiOutlineArrowRight size={26} />}
         </button>
       );
+    case ButtonTypes.OpenCamera:
+      return (
+        <button
+          onClick={() => setStep(step + 1)}
+          className="flex mt-5 w-40 content-center justify-between baseline-center rounded-2xl bg-[#F4F4F9] p-2.5"
+        >
+          Take a Photo{<AiOutlineArrowRight size={26} />}
+        </button>
+      )
     default:
       return <div>Please Provide a ButtonType</div>;
   }

@@ -26,11 +26,15 @@ export default function ImageUpload() {
     reader.readAsDataURL(event.target.files[0])
   }
   return (
-    <div className="items-center justify-center flex">
-      <div onClick={handlePictureUpload} className="border-dashed border-black border-2 rounded-full w-24 h-24 baseline-center items-center justify-center">
-        <AiOutlineCloudUpload size={64} className="mx-auto mt-2.5" />
-        <input type="file" ref={inputRef} className="w-full h-full" style={{ display: 'none' }} onChange={handleFileUpload} />
+    <div>
+      <div className="items-center justify-center flex">
+        <div onClick={handlePictureUpload} className="border-dashed border-[#F4F4F9] border-2 rounded-full w-44 h-44 baseline-center items-center justify-center">
+          <AiOutlineCloudUpload size={64} className="mx-auto mt-14" color="#F4F4F9" />
+          <input type="file" ref={inputRef} className="w-full h-full" style={{ display: 'none' }} onChange={handleFileUpload} />
+        </div>
       </div>
+
+      <p className="text-sm mt-3 text-[#F4F4F9]">Upload</p>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import { useContext, useRef } from "react"
-import { AiFillCamera } from "react-icons/ai"
+import { ButtonTypes } from "../../../../types/ButtonTypes"
 import { UserContext } from "../../../context/userDataContext"
+import Button from "../../Core/Button"
 
 
 
@@ -28,10 +29,10 @@ export default function UseDeviceCamera() {
 
   return (
     <div className="items-center justify-center flex">
-      <div onClick={handleCameraOpen} className="">
-        <AiFillCamera size={64} />
-        <input type="file" ref={inputRef} onChange={handleFileUpload} accept="image/*" capture="user" className="overflow-hidden hidden" />
-      </div>
+      <Button onClick={handleCameraOpen} type={ButtonTypes.OpenCamera} />
+
+      <input type="file" ref={inputRef} onChange={handleFileUpload} accept="image/*" capture="user" className="overflow-hidden hidden" />
+
     </div>
   )
 }

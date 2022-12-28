@@ -3,4 +3,5 @@ export enum ButtonTypes {
   Back = "Back",
   Submit = "Submit",
   Start = "Start",
+  OpenCamera = "OpenCamera"
 }
