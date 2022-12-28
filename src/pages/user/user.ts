@@ -1,8 +1,8 @@
-export let user = {
-  lastName: "placeholder",
-  firstName: "placeholder",
-  mail: "placeholder",
-  picture: "placeholder",
+export let NewUser = {
+  lastName: "",
+  firstName: "",
+  mail: "",
+  picture: "",
   interests: {
     webDevelopment: false,
     cyberSecurity: false,
@@ -14,7 +14,7 @@ export let user = {
 
   company: {
     isAssociated: false,
-    companyName: "placeholder",
-    companyEmail: "placeholder",
+    companyName: "",
+    companyEmail: "",
   },
 };

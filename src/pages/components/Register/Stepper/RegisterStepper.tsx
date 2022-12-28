@@ -7,12 +7,5 @@ interface StepperProps {
   children: React.ReactNode;
 }
 export default function RegisterStepper({ children }: StepperProps) {
-  const [step, setStep] = useState(1);
-  return (
-    <>
-      <StepperContext.Provider value={{ step, setStep }}>
-        {children}
-      </StepperContext.Provider>
-    </>
-  );
+  return <>{children}</>;
 }
