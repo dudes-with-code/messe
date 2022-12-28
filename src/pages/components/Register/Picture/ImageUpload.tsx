@@ -28,6 +28,7 @@ export default function ImageUpload() {
   return (
     <div className="items-center justify-center flex">
       <div onClick={handlePictureUpload} className="border-dashed border-black border-2 rounded-full w-24 h-24 baseline-center items-center justify-center">
+        <AiOutlineCloudUpload size={64} className="mx-auto mt-2.5" />
         <input type="file" ref={inputRef} className="w-full h-full" style={{ display: 'none' }} onChange={handleFileUpload} />
       </div>
     </div>
