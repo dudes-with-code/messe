@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { StepperContext } from "../../../context/StepperContext";
 import CompanyStep from "../Company/CompanyStep";
 import InterestsStep from "../Interests/InterestsStep";
+
 import PersonalDataStep from "../PersonalData/PersonalDataStep";
 import PictureStep from "../Picture/PictureStep";
 import StartStep from "../Start/StartStep";

@@ -6,9 +6,10 @@ import CircularProgress from "./CircularProgress";
 
 interface ButtonProps {
   type: ButtonTypes;
+  title?: string;
 }
 
-export default function Button({ type }: ButtonProps) {
+export default function Button({ type, title }: ButtonProps) {
   const { step, setStep } = useContext(StepperContext);
   //implement different buttontypes
   switch (type) {
@@ -19,6 +20,7 @@ export default function Button({ type }: ButtonProps) {
         </button>
       );
     }
+
     case ButtonTypes.Back:
       return <button onClick={() => setStep(step - 1)}>Back</button>;
     case ButtonTypes.Start:
@@ -34,11 +36,11 @@ export default function Button({ type }: ButtonProps) {
       return (
         <button
           onClick={() => setStep(step + 1)}
-          className="flex mt-5 w-40 content-center justify-between baseline-center rounded-2xl bg-[#F4F4F9] p-2.5"
+          className="baseline-center mt-5 flex w-40 content-center justify-between rounded-2xl bg-[#F4F4F9] p-2.5"
         >
           Take a Photo{<AiOutlineArrowRight size={26} />}
         </button>
-      )
+      );
     default:
       return <div>Please Provide a ButtonType</div>;
   }
