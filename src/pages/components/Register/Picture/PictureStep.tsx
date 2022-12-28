@@ -9,7 +9,7 @@ export default function PictureStep() {
         <ImageUpload />
       </div>
       <p>- or - </p>
-      <div>
+      <div className="max-w-[150] max-h-48">
         <UseDeviceCamera />
       </div>
     </div>
