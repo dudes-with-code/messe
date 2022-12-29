@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { trpc } from "../../../../utils/trpc";
 import { UserContext } from "../../../context/userDataContext";
+import { NewUser } from "../../../user/user";
 
 export default function ThankYou() {
   const { user, setUser } = useContext(UserContext);
@@ -25,6 +26,8 @@ export default function ThankYou() {
         companyName: user.company.companyName,
       },
     });
+    const cleanUser = NewUser;
+    setUser(cleanUser);
   }, []);
 
   return (
