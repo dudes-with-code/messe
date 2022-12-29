@@ -29,7 +29,7 @@ const Home = () => {
                 </div>
                 <div className="top-0 flex w-full justify-between">
                   {step != 1 && <Button type={ButtonTypes.Back} />}
-                  {step != 1 && (
+                  {(step === 2 || step === 3 || step === 4 || step === 6) && (
                     <CircularProgress number={step}>
                       <Button type={ButtonTypes.Next} />
                     </CircularProgress>

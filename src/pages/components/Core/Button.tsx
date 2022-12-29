@@ -40,6 +40,25 @@ export default function Button({ type, title }: ButtonProps) {
           Take a Photo{<AiOutlineArrowRight size={26} />}
         </button>
       );
+    case ButtonTypes.PartOfCompany:
+      return (
+        <button
+          className=" mt-5 w-72 rounded-2xl bg-[#F4F4F9] p-2.5"
+        >
+          I am Part of a Company
+        </button>
+      );
+    case ButtonTypes.NoPartOfCompany:
+      return (
+        <button
+          className=" mt-5 w-72 rounded-2xl bg-[#F4F4F9] p-2.5"
+          onClick={() => setStep(step + 2)}
+        >
+          I am NOT part of a Company
+        </button>
+      );
+
+
     default:
       return <div>Please Provide a ButtonType</div>;
   }
