@@ -35,7 +35,6 @@ export default function Button({ type, title }: ButtonProps) {
     case ButtonTypes.OpenCamera:
       return (
         <button
-          onClick={() => setStep(step + 1)}
           className="baseline-center mt-5 flex w-40 content-center justify-between rounded-2xl bg-[#F4F4F9] p-2.5"
         >
           Take a Photo{<AiOutlineArrowRight size={26} />}

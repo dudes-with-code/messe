@@ -29,8 +29,9 @@ export default function UseDeviceCamera() {
 
   return (
     <div className="items-center justify-center flex">
-      <Button onClick={handleCameraOpen} type={ButtonTypes.OpenCamera} />
-
+      <div onClick={handleCameraOpen} >
+        <Button type={ButtonTypes.OpenCamera} />
+      </div>
       <input type="file" ref={inputRef} onChange={handleFileUpload} accept="image/*" capture="user" className="overflow-hidden hidden" />
 
     </div>
