@@ -2,51 +2,51 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "mysql"
-    // NOTE: When using postgresql, mysql or sqlserver, uncomment the @db.Text annotations in model Account below
-    // Further reading:
-    // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
-    // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
-    url      = env("DATABASE_URL")
+  provider = "mysql"
+  // NOTE: When using postgresql, mysql or sqlserver, uncomment the @db.Text annotations in model Account below
+  // Further reading:
+  // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
+  // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
+  url      = env("DATABASE_URL")
 }
 
 model UserData {
-    id        Int          @id @default(autoincrement())
-    lastName  String
-    firstName String
-    mail      String       @unique
-    interests Interests?
-    picture   String       @db.LongText
-    company   CompanyData?
-    createdAt DateTime     @default(now())
+  id        Int          @id @default(autoincrement())
+  lastName  String
+  firstName String
+  mail      String       @unique
+  interests Interests?
+  picture   String       @db.LongText
+  company   CompanyData?
+  createdAt DateTime     @default(now())
 }
 
 model Interests {
-    user           UserData @relation(fields: [userID], references: [id])
-    userID         Int      @unique
-    webDevelopment Boolean
-    cyberSecurity  Boolean
-    mobileDev      Boolean
-    design         Boolean
-    dataScience    Boolean
-    coding         Boolean
+  user           UserData @relation(fields: [userID], references: [id])
+  userID         Int      @unique
+  webDevelopment Boolean
+  cyberSecurity  Boolean
+  mobileDev      Boolean
+  design         Boolean
+  dataScience    Boolean
+  coding         Boolean
 }
 
 model CompanyData {
-    user         UserData @relation(fields: [userID], references: [id])
-    userID       Int      @unique
-    isAssociated Boolean
-    companyName  String
-    companyEmail String
+  user         UserData @relation(fields: [userID], references: [id])
+  userID       Int      @unique
+  isAssociated Boolean
+  companyName  String
+  companyEmail String
 }
 
 model Admin {
-    id       String @id @default(cuid())
-    name     String
-    email    String @unique
-    password String
+  id       String @id @default(cuid())
+  name     String
+  email    String @unique
+  password String
 }
