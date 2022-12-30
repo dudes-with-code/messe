@@ -27,10 +27,12 @@ export default function Ticket() {
               <p className="text-2xl font-bold">
                 {user.lastName}, {user.firstName}
               </p>
-              <p>
-                <span className="font-bold">Company:</span>{" "}
-                {user.company.companyName}
-              </p>
+              {user.company.isAssociated && (
+                <p>
+                  <span className="font-bold">Company:</span>{" "}
+                  {user.company.companyName}
+                </p>
+              )}
             </div>
           </div>
         </Page>
