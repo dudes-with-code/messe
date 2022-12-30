@@ -6,5 +6,6 @@ export enum ButtonTypes {
   OpenCamera = "OpenCamera",
   Interests = "Interests",
   PartOfCompany = "PartOfCompany",
-  NoPartOfCompany = "NoPartOfCompany"
+  NoPartOfCompany = "NoPartOfCompany",
+  CompleteRegistration = "CompleteRegistraton",
 }

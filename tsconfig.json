@@ -23,7 +23,8 @@
     "**/*.cjs",
     "**/*.mjs",
     "src/pages/components/Register/Stepper/Step.tsx",
-    "src/pages/components/Register/Interests/InterestsStep.jsx"
+    "src/pages/components/Register/Interests/InterestsStep.jsx",
+    "src/pages/components/Register/ThankYou/TicketCreator.jsx"
   ],
   "exclude": ["node_modules"]
 }
