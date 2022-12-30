@@ -90,7 +90,7 @@ export default function Button({ type, title }: ButtonProps) {
           className="baseline-center mt-5 flex w-40 content-center justify-between rounded-2xl bg-[#F4F4F9] p-2.5"
           onClick={CompleteRegistration}
         >
-          Complete Registration{<AiOutlineArrowRight size={26} />}
+          Complete Registration & Download Ticket
         </button>
       );
     default:

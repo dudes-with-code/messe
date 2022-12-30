@@ -39,6 +39,7 @@ export default function PersonalDataStep() {
           placeholder="First Name"
           onChange={handleFirstNameChange}
           className="m-3.5 border-t-0 border-l-0 border-r-0 border-b-2 border-[#F1FFE7] bg-transparent text-white"
+          required
         />
       </div>
       <div className="m-5 flex items-center justify-center ">
@@ -48,6 +49,7 @@ export default function PersonalDataStep() {
           placeholder="Last Name"
           onChange={handleLastNameChange}
           className="m-3.5 border-t-0 border-l-0 border-r-0 border-b-2 border-[#F1FFE7] bg-transparent text-white"
+          required
         />
       </div>
       <div className="m-5 flex items-center justify-center">
@@ -57,6 +59,7 @@ export default function PersonalDataStep() {
           placeholder="eMail"
           onChange={handleMailChange}
           className="m-3.5 border-t-0 border-l-0 border-r-0 border-b-2 border-[#F1FFE7] bg-transparent text-white"
+          required
         />
       </div>
     </div>
