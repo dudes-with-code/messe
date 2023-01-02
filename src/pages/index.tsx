@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UserContext } from "./context/userDataContext";
 import { NewUser } from "./user/user";
 import { StepperContext } from "./context/StepperContext";
@@ -14,7 +14,8 @@ import CircularProgress from "./components/Core/CircularProgress";
 import { HiOutlineTicket } from "react-icons/hi";
 
 const Home = () => {
-  const [user, setUser] = useState(NewUser);
+  const cleanUser = NewUser;
+  const [user, setUser] = useState(cleanUser);
   const [step, setStep] = useState(1);
 
   return (
@@ -29,7 +30,11 @@ const Home = () => {
                 </div>
                 <div className="top-0 flex w-full justify-between">
                   {step != 1 && <Button type={ButtonTypes.Back} />}
-                  {(step === 2 || step === 3 || step === 4 || step === 6) && (
+                  {(step === 2 ||
+                    step === 3 ||
+                    step === 4 ||
+                    step === 6 ||
+                    step === 7) && (
                     <CircularProgress number={step}>
                       <Button type={ButtonTypes.Next} />
                     </CircularProgress>
