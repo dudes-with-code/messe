@@ -1,8 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ButtonTypes } from "../../../types/ButtonTypes";
 import { StepperContext } from "../../context/StepperContext";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import CircularProgress from "./CircularProgress";
+import { NewUser } from "../../user/user";
+import { UserContext } from "../../context/userDataContext";
+import { trpc } from "../../../utils/trpc";
 
 interface ButtonProps {
   type: ButtonTypes;
@@ -11,6 +14,33 @@ interface ButtonProps {
 
 export default function Button({ type, title }: ButtonProps) {
   const { step, setStep } = useContext(StepperContext);
+  const { user, setUser } = useContext(UserContext);
+  const mutation = trpc.userData.createUser.useMutation();
+  function CompleteRegistration() {
+    setStep(1);
+
+    mutation.mutate({
+      mail: user.mail,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      picture: user.picture,
+      interests: {
+        webDevelopment: user.interests.webDevelopment,
+        cyberSecurity: user.interests.cyberSecurity,
+        mobileDev: user.interests.mobileDev,
+        design: user.interests.design,
+        dataScience: user.interests.dataScience,
+        coding: user.interests.coding,
+      },
+      company: {
+        isAssociated: user.company.isAssociated,
+        companyEmail: user.company.companyEmail,
+        companyName: user.company.companyName,
+      },
+    });
+    const cleanUser = NewUser;
+    setUser(cleanUser);
+  }
   //implement different buttontypes
   switch (type) {
     case ButtonTypes.Next: {
@@ -34,17 +64,13 @@ export default function Button({ type, title }: ButtonProps) {
       );
     case ButtonTypes.OpenCamera:
       return (
-        <button
-          className="baseline-center mt-5 flex w-40 content-center justify-between rounded-2xl bg-[#F4F4F9] p-2.5"
-        >
+        <button className="baseline-center mt-5 flex w-40 content-center justify-between rounded-2xl bg-[#F4F4F9] p-2.5">
           Take a Photo{<AiOutlineArrowRight size={26} />}
         </button>
       );
     case ButtonTypes.PartOfCompany:
       return (
-        <button
-          className=" mt-5 w-72 rounded-2xl bg-[#F4F4F9] p-2.5"
-        >
+        <button className=" mt-5 w-72 rounded-2xl bg-[#F4F4F9] p-2.5">
           I am Part of a Company
         </button>
       );
@@ -58,7 +84,15 @@ export default function Button({ type, title }: ButtonProps) {
         </button>
       );
 
-
+    case ButtonTypes.CompleteRegistration:
+      return (
+        <button
+          className="baseline-center mt-5 flex w-40 content-center justify-between rounded-2xl bg-[#F4F4F9] p-2.5"
+          onClick={CompleteRegistration}
+        >
+          Complete Registration & Download Ticket
+        </button>
+      );
     default:
       return <div>Please Provide a ButtonType</div>;
   }

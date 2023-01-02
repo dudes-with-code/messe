@@ -1,35 +1,33 @@
+import { PDFDownloadLink, Text } from "@react-pdf/renderer";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 import { useContext, useEffect } from "react";
-import { trpc } from "../../../../utils/trpc";
+import { HiOutlineTicket } from "react-icons/hi";
+
+import { ButtonTypes } from "../../../../types/ButtonTypes";
+
 import { UserContext } from "../../../context/userDataContext";
-import { NewUser } from "../../../user/user";
+
+import Button from "../../Core/Button";
+import Ticket from "./Ticket";
 
 export default function ThankYou() {
   const { user, setUser } = useContext(UserContext);
-  const mutation = trpc.userData.createUser.useMutation();
-  useEffect(() => {
-    mutation.mutate({
-      mail: user.mail,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      picture: user.picture,
-      interests: {
-        webDevelopment: user.interests.webDevelopment,
-        cyberSecurity: user.interests.cyberSecurity,
-        mobileDev: user.interests.mobileDev,
-        design: user.interests.design,
-        dataScience: user.interests.dataScience,
-        coding: user.interests.coding,
-      },
-      company: {
-        isAssociated: user.company.isAssociated,
-        companyEmail: user.company.companyEmail,
-        companyName: user.company.companyName,
-      },
-    });
-    const cleanUser = NewUser;
-    setUser(cleanUser);
-  }, []);
-
+  function printTicket() {
+    const ticket = document.getElementById("ticket");
+    if (ticket != null) {
+      html2canvas(ticket).then((canvas) => {
+        const imgData = canvas.toDataURL("image/png");
+        const pdf = new jsPDF({
+          orientation: "landscape",
+          format: [270, 95],
+        });
+        pdf.addImage(imgData, "JPEG", 0, 0);
+        // pdf.output('dataurlnewwindow');
+        pdf.save("download.pdf");
+      });
+    }
+  }
   return (
     <div>
       <h1 className="align-center mb-18 h-28 justify-center pt-44 text-4xl font-bold text-slate-200">
@@ -37,8 +35,13 @@ export default function ThankYou() {
         {user.firstName}!
       </h1>
 
-      <div className="mt-44 flex flex-wrap items-center justify-center gap-3.5">
-        Here downloadable ticket loool
+      <div id="ticket" className="mt-40 flex rounded-md bg-slate-200 p-5">
+        <Ticket />
+      </div>
+      <div className="mt-16 flex w-full items-center justify-center">
+        <div onClick={printTicket}>
+          <Button type={ButtonTypes.CompleteRegistration} />
+        </div>
       </div>
     </div>
   );
