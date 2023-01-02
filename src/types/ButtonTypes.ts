@@ -5,4 +5,6 @@ export enum ButtonTypes {
   Start = "Start",
   OpenCamera = "OpenCamera",
   Interests = "Interests",
+  PartOfCompany = "PartOfCompany",
+  NoPartOfCompany = "NoPartOfCompany"
 }

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { StepperContext } from "../../../context/StepperContext";
+import CompanyDetailsForm from "../Company/CompanyDetailsForm";
 import CompanyStep from "../Company/CompanyStep";
 import InterestsStep from "../Interests/InterestsStep";
 
@@ -30,7 +31,7 @@ export default function Step() {
     case 5:
       return <CompanyStep />;
     case 6:
-      return <CompanyStep />;
+      return <CompanyDetailsForm />;
     case 7:
       return <ThankYou />;
     case 8:
