@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { StepperContext } from "../../../context/StepperContext";
+import { StepperContext } from "../../../../lib/context/StepperContext";
 import CompanyDetailsForm from "../Company/CompanyDetailsForm";
 import CompanyStep from "../Company/CompanyStep";
 import InterestsStep from "../Interests/InterestsStep";

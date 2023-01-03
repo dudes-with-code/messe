@@ -9,9 +9,11 @@
 const config = {
   reactStrictMode: true,
   swcMinify: true,
+  output: "standalone",
   i18n: {
     locales: ["en"],
     defaultLocale: "en",
   },
+  pageExtensions: ["tsx", "ts"]
 };
 export default config;

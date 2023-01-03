@@ -1,18 +1,18 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 import { ButtonTypes } from "../../../types/ButtonTypes";
-import { StepperContext } from "../../context/StepperContext";
+import { StepperContext } from "../../../lib/context/StepperContext";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import CircularProgress from "./CircularProgress";
-import { NewUser } from "../../user/user";
-import { UserContext } from "../../context/userDataContext";
+
+import { NewUser } from "../../../lib/user/user";
+import { UserContext } from "../../../lib/context/userDataContext";
 import { trpc } from "../../../utils/trpc";
 
 interface ButtonProps {
   type: ButtonTypes;
-  title?: string;
+
 }
 
-export default function Button({ type, title }: ButtonProps) {
+export default function Button({ type }: ButtonProps) {
   const { step, setStep } = useContext(StepperContext);
   const { user, setUser } = useContext(UserContext);
   const mutation = trpc.userData.createUser.useMutation();
