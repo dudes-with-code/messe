@@ -1,6 +1,5 @@
 import { z } from "zod";
 import { router, publicProcedure } from "../trpc";
-import trpc from "../../../utils/trpc"
 
 export const adminRouter = router({
   changeSpecificUserData: publicProcedure
@@ -201,7 +200,7 @@ export const adminRouter = router({
       },
     })
   }),
-  getNumberOfCyberSecuirtyInterestedToday: publicProcedure.query(({ ctx }) => {
+  getNumberOfCyberSecurityInterestedToday: publicProcedure.query(({ ctx }) => {
     let date = new Date()
     let yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
     let tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)

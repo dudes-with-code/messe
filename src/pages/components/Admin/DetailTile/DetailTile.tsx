@@ -21,7 +21,7 @@ export default function DetailTile({ totalNum, dailyChange, title }: DetailTileP
       </div>
       <div className="flex row-start-2 col-start-2 col-end-4">
         <p className="pr-3 text-4xl text-[#F4F4F9]">{totalNum}</p>
-        <p className={change <= 0 ? " text-red-500" : "text-green-500"}>{change > 0 ? "+" : ""} {change}</p>
+        <p className={change <= 0 ? " text-red-500" : "text-green-500"}>{change === 0 ? "" : change > 0 ? `+${change}` : `${change}`}</p>
       </div>
     </div>
   )
