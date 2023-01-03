@@ -10,7 +10,7 @@ export default function ImageUpload() {
   const { user, setUser } = useContext(UserContext)
   const inputRef = useRef(null)
   function handlePictureUpload() {
-    //ts-ignore
+    // @ts-ignore
     inputRef.current.click()
   }
   async function handleFileUpload(event: React.ChangeEvent<HTMLInputElement>) {
@@ -22,7 +22,7 @@ export default function ImageUpload() {
         picture: reader.result
       }))
     }
-    //ts-ignore
+    // @ts-ignore
     reader.readAsDataURL(event.target.files[0])
   }
   return (
