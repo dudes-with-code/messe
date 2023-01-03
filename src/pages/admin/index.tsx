@@ -3,7 +3,11 @@ import { trpc } from "../../utils/trpc";
 import AdminHeader from "../components/Admin/AdminHeader";
 const Admin = () => {
   const { data: session } = useSession();
-  const allUsers = trpc.userData.getAllUsers.useQuery();
+  const allUsers = trpc.adminRouter.getAllUsers.useQuery();
+  const numOfCoding = trpc.adminRouter.getNumberOfCodingInterested.useQuery()
+  if (numOfCoding.isSuccess) {
+    console.log(numOfCoding)
+  }
   if (!session) {
     return <AdminHeader />;
   }
