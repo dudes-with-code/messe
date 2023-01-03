@@ -1,5 +1,6 @@
-import { useContext, useState } from "react";
-import { UserContext } from "../../../context/userDataContext";
+import { useContext} from "react";
+import type UserType from "../../../../types/apiTypes";
+import { UserContext } from "../../../../lib/context/userDataContext"
 
 export default function PersonalDataStep() {
   const { user, setUser } = useContext(UserContext);
@@ -7,7 +8,7 @@ export default function PersonalDataStep() {
   async function handleFirstNameChange(
     event: React.ChangeEvent<HTMLInputElement>
   ) {
-    await setUser((user: any) => ({
+    await setUser((user: UserType) => ({
       ...user,
       firstName: event.target.value,
     }));
@@ -15,13 +16,13 @@ export default function PersonalDataStep() {
   async function handleLastNameChange(
     event: React.ChangeEvent<HTMLInputElement>
   ) {
-    await setUser((user: any) => ({
+    await setUser((user: UserType) => ({
       ...user,
       lastName: event.target.value,
     }));
   }
   async function handleMailChange(event: React.ChangeEvent<HTMLInputElement>) {
-    await setUser((user: any) => ({
+    await setUser((user: UserType) => ({
       ...user,
       mail: event.target.value,
     }));

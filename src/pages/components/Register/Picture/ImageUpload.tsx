@@ -1,23 +1,28 @@
 import { useContext, useRef } from "react"
 import { AiOutlineCloudUpload } from "react-icons/ai"
-import { UserContext } from "../../../context/userDataContext"
+import type UserType from "../../../../types/apiTypes"
+import { UserContext } from "../../../../lib/context/userDataContext"
 
 
 
 
 
 export default function ImageUpload() {
-  const { user, setUser } = useContext(UserContext)
-  const inputRef = useRef(null)
+  const { setUser } = useContext(UserContext)
+  const inputRef = useRef<HTMLInputElement>(null)
   function handlePictureUpload() {
-    // @ts-ignore
-    inputRef.current.click()
+    //@ts-ignore
+      inputRef.current.click()
+    
+      
+    
+    
   }
   async function handleFileUpload(event: React.ChangeEvent<HTMLInputElement>) {
     const reader = new FileReader()
     reader.onloadend = () => {
       console.log(reader.result)
-      setUser((user: any) => ({
+      setUser((user: UserType) => ({
         ...user,
         picture: reader.result
       }))

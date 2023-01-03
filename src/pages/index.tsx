@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { UserContext } from "./context/userDataContext";
-import { NewUser } from "./user/user";
-import { StepperContext } from "./context/StepperContext";
+import { UserContext } from "../lib/context/userDataContext";
+import { NewUser } from "../lib/user/user";
+import { StepperContext } from "../lib/context/StepperContext"
 import RegisterStepper from "./components/Register/Stepper/RegisterStepper";
 import Step from "./components/Register/Stepper/Step";
 import { ButtonTypes } from "../types/ButtonTypes";
@@ -33,7 +33,7 @@ const Home = () => {
                     <Button type={ButtonTypes.Back} />
                   )}
                   {(step === 2 || step === 3 || step === 4 || step === 6) && (
-                    <CircularProgress number={step}>
+                    <CircularProgress >
                       <Button type={ButtonTypes.Next} />
                     </CircularProgress>
                   )}

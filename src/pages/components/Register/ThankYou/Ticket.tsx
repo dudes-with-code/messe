@@ -1,17 +1,14 @@
 import {
   Page,
-  Text,
-  View,
+
   Document,
-  Image,
-  StyleSheet,
-  PDFDownloadLink,
+
 } from "@react-pdf/renderer";
 import { useContext } from "react";
-import { UserContext } from "../../../context/userDataContext";
+import { UserContext } from "../../../../lib/context/userDataContext";
 
 export default function Ticket() {
-  const { user, setUser } = useContext(UserContext);
+  const { user} = useContext(UserContext);
   return (
     <div className="">
       <Document>

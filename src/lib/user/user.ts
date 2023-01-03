@@ -1,4 +1,4 @@
-export let NewUser = {
+export const NewUser = {
   lastName: "",
   firstName: "",
   mail: "",

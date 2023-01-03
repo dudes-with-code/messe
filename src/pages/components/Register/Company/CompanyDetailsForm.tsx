@@ -1,5 +1,6 @@
-import { useContext, useState } from "react";
-import { UserContext } from "../../../context/userDataContext";
+import { useContext} from "react";
+import type UserType from "../../../../types/apiTypes";
+import { UserContext } from "../../../../lib/context/userDataContext";
 
 export default function CompanyDetailsForm() {
   const { user, setUser } = useContext(UserContext);
@@ -7,7 +8,7 @@ export default function CompanyDetailsForm() {
   async function handleNameChange(
     event: React.ChangeEvent<HTMLInputElement>
   ) {
-    await setUser((user: any) => ({
+    await setUser((user: UserType) => ({
       ...user,
       company: {
         ...company,
@@ -16,7 +17,7 @@ export default function CompanyDetailsForm() {
     }));
   }
   async function handleMailChange(event: React.ChangeEvent<HTMLInputElement>) {
-    await setUser((user: any) => ({
+    await setUser((user: UserType) => ({
       ...user,
       company: {
         ...company,
