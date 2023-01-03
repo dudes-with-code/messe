@@ -25,7 +25,7 @@ export default function ThankYou() {
         //@ts-ignore
         pdf.addImage(imgData, "JPEG", 0, 0);
         // pdf.output('dataurlnewwindow');
-        pdf.save("download.pdf");
+        pdf.save("Ticket.pdf");
       });
     }
   }
