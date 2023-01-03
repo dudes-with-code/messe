@@ -109,6 +109,70 @@ export const adminRouter = router({
         userID: true
       }
     })
-  })
-
+  }),
+  getNumberOfWebDevInterested: publicProcedure.query(({ ctx }) => {
+    return ctx.prisma.interests.groupBy({
+      by: ["webDevelopment"],
+      where: {
+        webDevelopment: {
+          equals: true
+        }
+      },
+      _count: {
+        userID: true
+      }
+    })
+  }),
+  getNumberOfCyberSecurityInterested: publicProcedure.query(({ ctx }) => {
+    return ctx.prisma.interests.groupBy({
+      by: ["cyberSecurity"],
+      where: {
+        cyberSecurity: {
+          equals: true
+        }
+      },
+      _count: {
+        userID: true
+      }
+    })
+  }),
+  getNumberOfMobileDevInterested: publicProcedure.query(({ ctx }) => {
+    return ctx.prisma.interests.groupBy({
+      by: ["mobileDev"],
+      where: {
+        mobileDev: {
+          equals: true
+        }
+      },
+      _count: {
+        userID: true
+      }
+    })
+  }),
+  getNumberOfDesignInterested: publicProcedure.query(({ ctx }) => {
+    return ctx.prisma.interests.groupBy({
+      by: ["design"],
+      where: {
+        design: {
+          equals: true
+        }
+      },
+      _count: {
+        userID: true
+      }
+    })
+  }),
+  getNumberOfDataScienceInterested: publicProcedure.query(({ ctx }) => {
+    return ctx.prisma.interests.groupBy({
+      by: ["dataScience"],
+      where: {
+        dataScience: {
+          equals: true
+        }
+      },
+      _count: {
+        userID: true
+      }
+    })
+  }),
 })
