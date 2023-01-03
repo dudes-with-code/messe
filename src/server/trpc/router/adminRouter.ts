@@ -318,6 +318,45 @@ export const adminRouter = router({
       },
     })
   }),
+  getNumberOfCompanyAssociatedToday: publicProcedure.query(({ ctx }) => {
+    let date = new Date()
+    let yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
+    let tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
+
+    return ctx.prisma.userData.groupBy({
+      by: ["id"],
+      where: {
+        company: {
+          isAssociated: {
+            equals: true
+          }
+        },
+        AND: [{
+          createdAt: {
+            lt: new Date(tomorrow),
+            gt: new Date(yesterday),
+          },
+        }]
+
+      },
+    })
+
+  }),
+  getNumberOfCompanyAssociated: publicProcedure.query(({ ctx }) => {
+
+    return ctx.prisma.userData.groupBy({
+      by: ["id"],
+      where: {
+        company: {
+          isAssociated: {
+            equals: true
+          }
+        },
+      },
+
+    })
+
+  }),
 
 
 
