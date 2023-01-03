@@ -75,13 +75,15 @@ export const adminRouter = router({
 
 
   getAllUsersFromToday: publicProcedure
-    .input(z.object({ tomorrow: z.string(), yesterday: z.string() }))
-    .mutation(({ ctx, input }) => {
+    .query(({ ctx }) => {
+      let date = new Date()
+      let yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() - 1)
+      let tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
       return ctx.prisma.userData.findMany({
         where: {
           createdAt: {
-            lt: new Date(input.tomorrow),
-            gt: new Date(input.yesterday),
+            lt: new Date(tomorrow),
+            gt: new Date(yesterday),
           },
         },
       });
@@ -175,4 +177,151 @@ export const adminRouter = router({
       }
     })
   }),
+  getNumberOfWebDevInterestedToday: publicProcedure.query(({ ctx }) => {
+    let date = new Date()
+    let yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
+    let tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
+
+    return ctx.prisma.userData.groupBy({
+      by: ["id"],
+      where: {
+        interests: {
+          webDevelopment: {
+            equals: true
+          }
+        },
+        AND: [{
+          createdAt: {
+            lt: new Date(tomorrow),
+            gt: new Date(yesterday),
+          },
+        }]
+
+      },
+    })
+  }),
+  getNumberOfCyberSecuirtyInterestedToday: publicProcedure.query(({ ctx }) => {
+    let date = new Date()
+    let yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
+    let tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
+
+    return ctx.prisma.userData.groupBy({
+      by: ["id"],
+      where: {
+        interests: {
+          cyberSecurity: {
+            equals: true
+          }
+        },
+        AND: [{
+          createdAt: {
+            lt: new Date(tomorrow),
+            gt: new Date(yesterday),
+          },
+        }]
+
+      },
+    })
+  }),
+  getNumberOfMobileDevInterestedToday: publicProcedure.query(({ ctx }) => {
+    let date = new Date()
+    let yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
+    let tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
+
+    return ctx.prisma.userData.groupBy({
+      by: ["id"],
+      where: {
+        interests: {
+          mobileDev: {
+            equals: true
+          }
+        },
+        AND: [{
+          createdAt: {
+            lt: new Date(tomorrow),
+            gt: new Date(yesterday),
+          },
+        }]
+
+      },
+    })
+  }),
+  getNumberOfDesignInterestedToday: publicProcedure.query(({ ctx }) => {
+    let date = new Date()
+    let yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
+    let tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
+
+    return ctx.prisma.userData.groupBy({
+      by: ["id"],
+      where: {
+        interests: {
+          design: {
+            equals: true
+          }
+        },
+        AND: [{
+          createdAt: {
+            lt: new Date(tomorrow),
+            gt: new Date(yesterday),
+          },
+        }]
+
+      },
+    })
+  }),
+
+  getNumberOfDataScienceInterestedToday: publicProcedure.query(({ ctx }) => {
+    let date = new Date()
+    let yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
+    let tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
+
+    return ctx.prisma.userData.groupBy({
+      by: ["id"],
+      where: {
+        interests: {
+          dataScience: {
+            equals: true
+          }
+        },
+        AND: [{
+          createdAt: {
+            lt: new Date(tomorrow),
+            gt: new Date(yesterday),
+          },
+        }]
+
+      },
+    })
+  }),
+
+
+  getNumberOfCodingInterestedToday: publicProcedure.query(({ ctx }) => {
+    let date = new Date()
+    let yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
+    let tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
+
+    return ctx.prisma.userData.groupBy({
+      by: ["id"],
+      where: {
+        interests: {
+          coding: {
+            equals: true
+          }
+        },
+        AND: [{
+          createdAt: {
+            lt: new Date(tomorrow),
+            gt: new Date(yesterday),
+          },
+        }]
+
+      },
+    })
+  }),
+
+
+
+
+
+
 })
