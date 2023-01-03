@@ -1,18 +1,18 @@
-import { PDFDownloadLink, Text } from "@react-pdf/renderer";
+
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { useContext, useEffect } from "react";
-import { HiOutlineTicket } from "react-icons/hi";
+import { useContext} from "react";
+
 
 import { ButtonTypes } from "../../../../types/ButtonTypes";
 
-import { UserContext } from "../../../context/userDataContext";
+import { UserContext } from "../../../../lib/context/userDataContext";
 
 import Button from "../../Core/Button";
 import Ticket from "./Ticket";
 
 export default function ThankYou() {
-  const { user, setUser } = useContext(UserContext);
+  const { user} = useContext(UserContext);
   function printTicket() {
     const ticket = document.getElementById("ticket");
     if (ticket != null) {

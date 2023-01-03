@@ -1,4 +1,4 @@
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { trpc } from "../../utils/trpc";
 import AdminHeader from "../components/Admin/AdminHeader";
 import DetailTile from "../components/Admin/DetailTile/DetailTile";

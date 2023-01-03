@@ -1,6 +1,7 @@
 import { createContext } from "react";
 
-export let StepperContext = createContext({
+export const StepperContext = createContext({
   step: 1,
+  //@ts-ignore
   setStep: (newStep: number) => {},
 });

@@ -1,9 +1,7 @@
 import NextAuth, { type NextAuthOptions } from "next-auth";
-import DiscordProvider from "next-auth/providers/discord";
 import CredentialsProvider from 'next-auth/providers/credentials'
 // Prisma adapter for NextAuth, optional and can be removed
 
-import { env } from "../../../env/server.mjs";
 import { prisma } from "../../../server/db/client";
 
 export const authOptions: NextAuthOptions = {
@@ -17,8 +15,16 @@ export const authOptions: NextAuthOptions = {
     },
     session({ session, user }) {
       if (user) {
-        session.user.id = user.id
-        session.user.name = user.name
+
+        
+
+        if (session.user) {
+          session.user.id = user.id
+          session.user.name = user.name
+        }
+        else {
+          alert("alarm")
+        }
       }
       return session;
     },
@@ -37,8 +43,10 @@ export const authOptions: NextAuthOptions = {
         username: { label: "Username", type: "text", placeholder: "username" },
         password: { label: "Password", type: "password" }
       },
-      async authorize(credentials, req) {
-        const res: any = await prisma.admin.findFirst({
+
+      async authorize(credentials) {
+        const res = await prisma.admin.findFirst({
+
           where: {
             name: credentials?.username
           }
@@ -51,7 +59,9 @@ export const authOptions: NextAuthOptions = {
         }
         return {
           id: res.id,
-          name: res.username,
+
+          name: res.name,
+
           email: res.email
         }
       }

@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import { StepperContext } from "../../context/StepperContext";
+import React from "react";
+
 interface ProgressProps {
-  number: number;
+
   children: React.ReactNode;
 }
-export default function CircularProgress({ number, children }: ProgressProps) {
-  const { step, setStep } = useContext(StepperContext);
+export default function CircularProgress({  children }: ProgressProps) {
+  //const { step, setStep } = useContext(StepperContext);
 
-  return <div>{children}</div>;
+  return <div >{children}</div>;
 }
