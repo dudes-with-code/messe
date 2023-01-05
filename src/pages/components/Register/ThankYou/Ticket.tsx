@@ -7,11 +7,12 @@ import {
   StyleSheet,
   PDFDownloadLink,
 } from "@react-pdf/renderer";
-import { useContext } from "react";
-import { UserContext } from "../../../context/userDataContext";
 
-export default function Ticket() {
-  const { user, setUser } = useContext(UserContext);
+interface TicketProps {
+  user: any
+}
+
+export default function Ticket({ user }: TicketProps) {
   return (
     <div className="">
       <Document>

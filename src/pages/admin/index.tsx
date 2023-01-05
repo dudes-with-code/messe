@@ -1,9 +1,11 @@
 import { useSession, signIn, signOut } from "next-auth/react";
+import { useState } from "react";
+import { createContext } from "vm";
 import { trpc } from "../../utils/trpc";
 import AdminHeader from "../components/Admin/AdminHeader";
 import DetailTile from "../components/Admin/DetailTile/DetailTile";
 import UserComponent from "../components/Admin/UserComponent/UserComponent";
-const Admin = () => {
+export default function Admin() {
   const allUsers = trpc.adminRouter.getAllUsers.useQuery();
   const todaysUsers = trpc.adminRouter.getAllUsersFromToday.useQuery();
   const allAssociates =
@@ -25,7 +27,9 @@ const Admin = () => {
   const coding = trpc.adminRouter.getNumberOfCodingInterested.useQuery()
   const codingToday = trpc.adminRouter.getNumberOfCodingInterestedToday.useQuery()
   const { data: session } = useSession();
-
+  function refetchUsers () {
+    allUsers.refetch()
+  }
   if (!session) {
     return <AdminHeader />;
   }
@@ -93,14 +97,15 @@ const Admin = () => {
         </div>
         {allUsers.data?.map((user) => {
           return (<div>
-            <UserComponent key={user.id} user={user} />
+            <UserComponent key={user.id} allUsers={allUsers} refetch={refetchUsers} user={user} />
             <div className="col-start-1 col-end-13 h-0.5 bg-gray-300 my-4">
             </div>
 
           </div>)
-        })}
+        }, [allUsers])}
       </>
     </div>
   );
 };
-export default Admin;
+
+
