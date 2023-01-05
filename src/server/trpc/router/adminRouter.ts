@@ -91,7 +91,12 @@ export const adminRouter = router({
     }),
   getAllUsers: publicProcedure
     .query(({ ctx }) => {
-      return ctx.prisma.userData.findMany()
+      return ctx.prisma.userData.findMany({
+        include: {
+          company: true,
+          interests: true
+        }
+      })
     }),
 
   getUserByMail: publicProcedure
