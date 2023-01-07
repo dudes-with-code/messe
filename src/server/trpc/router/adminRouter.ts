@@ -200,7 +200,7 @@ export const adminRouter = router({
       },
     })
   }),
-  getNumberOfCyberSecuirtyInterestedToday: publicProcedure.query(({ ctx }) => {
+  getNumberOfCyberSecurityInterestedToday: publicProcedure.query(({ ctx }) => {
     let date = new Date()
     let yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
     let tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
@@ -357,10 +357,11 @@ export const adminRouter = router({
     })
 
   }),
-
-
-
-
-
-
 })
+
+
+
+
+
+
+
