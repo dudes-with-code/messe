@@ -15,6 +15,9 @@ export const trpc = createTRPCNext<AppRouter>({
   config() {
     return {
       transformer: superjson,
+      api: {
+        responseLimit: false,
+      },
       links: [
         loggerLink({
           enabled: (opts) =>
