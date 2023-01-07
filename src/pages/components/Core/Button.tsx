@@ -19,7 +19,7 @@ export default function Button({ type }: ButtonProps) {
   function CompleteRegistration() {
     setStep(1);
 
-    mutation.mutate({
+     mutation.mutate({
       mail: user.mail,
       firstName: user.firstName,
       lastName: user.lastName,
@@ -38,6 +38,7 @@ export default function Button({ type }: ButtonProps) {
         companyName: user.company.companyName,
       },
     });
+    
     const cleanUser = NewUser;
     setUser(cleanUser);
   }

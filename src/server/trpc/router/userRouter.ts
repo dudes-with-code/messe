@@ -1,7 +1,20 @@
+import { observable } from "@trpc/server/observable";
+import { User } from "next-auth";
+import { EventEmitter } from "stream";
 import { z } from "zod";
 import { router, publicProcedure } from "../trpc";
 
+const ee = new EventEmitter()
 export const userRouter = router({
+  onAdd: publicProcedure.subscription(() => {
+    return observable<User>((emit) => {
+      const onCreate = (data: User) => emit.next(data);
+      ee.on('createUser', onCreate);
+      return () => {
+        ee.off('createUser', onCreate);
+      };
+    });
+  }),
   createUser: publicProcedure
     .input(
       z.object({

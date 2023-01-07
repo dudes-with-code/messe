@@ -149,7 +149,7 @@ export default function EditForm({ user, setUser }: EditFormProps) {
             <div className="flex align-baseline">
               <div className="w-full items-center text-center">
                 <input
-                  type="text"
+                  type="email"
                   value={user.mail}
                   placeholder="eMail"
                   onChange={handleMailChange}
@@ -227,7 +227,26 @@ export default function EditForm({ user, setUser }: EditFormProps) {
           <h1 className="font-bold">Company</h1>
           <div className="ml-16 flex w-full items-center justify-around">
             <div className="flex align-baseline">
-              
+              <div className="">
+                <input
+                  type="text"
+                  value={user.company?.companyName}
+                  placeholder="First Name"
+                  onChange={handleFirstNameChange}
+                  className="m-3.5 border-t-0 border-l-0 border-r-0 border-b-2 border-[#F1FFE7] bg-transparent text-center text-white"
+                  required
+                />
+              </div>
+              <div className="">
+                <input
+                  type="email"
+                  value={user.company?.companyEmail}
+                  placeholder="Company eMail"
+                  onChange={handleLastNameChange}
+                  className="m-3.5 border-t-0 border-l-0 border-r-0 border-b-2 border-[#F1FFE7] bg-transparent text-center text-white"
+                  required
+                />
+              </div>
             </div>
           </div>
         </div>

@@ -9,6 +9,8 @@ import DetailTile from "../components/Admin/DetailTile/DetailTile";
 import UserComponent from "../components/Admin/UserComponent/UserComponent";
 
 export default function Admin() {
+  const test = trpc.userData.onAdd.useSubscription()
+  console.log(test)
   const allUsers = trpc.adminRouter.getAllUsers.useQuery();
   const todaysUsers = trpc.adminRouter.getAllUsersFromToday.useQuery();
   const allAssociates =
@@ -30,7 +32,8 @@ export default function Admin() {
   const coding = trpc.adminRouter.getNumberOfCodingInterested.useQuery()
   const codingToday = trpc.adminRouter.getNumberOfCodingInterestedToday.useQuery()
   const { data: session } = useSession();
-  setTimeout(() => {
+  
+   setTimeout(() => {
     refetchUsers()
   }, 30000)
   function refetchUsers() {

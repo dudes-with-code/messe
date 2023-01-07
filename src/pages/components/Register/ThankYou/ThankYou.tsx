@@ -37,7 +37,7 @@ export default function ThankYou() {
       </h1>
 
       <div id="ticket" className="mt-40 flex rounded-md bg-slate-200 p-5">
-        <Ticket user={user} />
+        <Ticket />
       </div>
       <div className="mt-16 flex w-full items-center justify-center">
         <div onClick={printTicket}>
