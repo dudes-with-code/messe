@@ -1,3 +1,6 @@
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import { useState } from "react";
 import { render } from "react-dom";
 import { HiOutlineTicket, HiPencil, HiTrash } from "react-icons/hi"
 import { trpc } from "../../../../utils/trpc";
@@ -27,24 +30,19 @@ interface UserComponentProps {
     } | null;
   },
 
-  refetch: () => {}
+  refetch: () => void,
+  showTicket: (user: any) => void,
+  showEdit: () => void
 }
 
 
 
 
-export default function UserComponent({ user, refetch }: UserComponentProps) {
+export default function UserComponent({ user, refetch, showTicket, showEdit }: UserComponentProps) {
 
   const userToBeDeleted = trpc.adminRouter.deleteUserByID.useMutation()
-  function ticket() {
-    return <Ticket user={user} />
-  }
-  function printTicket() {
-    alert("print")
-  }
-  function editUser() {
-    alert("edit")
-  }
+
+
   async function deleteUser() {
     userToBeDeleted.mutate({ id: user.id })
     setTimeout(() => {
@@ -71,15 +69,17 @@ export default function UserComponent({ user, refetch }: UserComponentProps) {
         {user.company?.isAssociated ? user.company.companyName : "-"}
       </div>
       <div className="-rotate-90 col-start-10 flex items-center justify-center">
-        <HiOutlineTicket onClick={printTicket} size={22} className="cursor-pointer" color="#2F4550" />
+        <HiOutlineTicket onClick={() => showTicket(user)} size={22} className="cursor-pointer" color="#2F4550" />
       </div>
       <div className="col-start-11 flex items-center justify-center">
-        <HiPencil onClick={editUser} className="cursor-pointer" size={22} color="#2F4550" />
+        <HiPencil onClick={showEdit} className="cursor-pointer" size={22} color="#2F4550" />
       </div>
       <div className="col-start-12 flex items-center justify-center">
         <HiTrash onClick={deleteUser} className="cursor-pointer" size={22} color="#2F4550" />
       </div>
-
+      <div id="ticket" className="hidden">
+        <Ticket user={user} />
+      </div>
     </div>
   )
 }

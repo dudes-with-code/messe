@@ -76,9 +76,9 @@ export const adminRouter = router({
 
   getAllUsersFromToday: publicProcedure
     .query(({ ctx }) => {
-      let date = new Date()
-      let yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() - 1)
-      let tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
+      const date = new Date()
+      const yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() - 1)
+      const tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
       return ctx.prisma.userData.findMany({
         where: {
           createdAt: {
@@ -183,9 +183,10 @@ export const adminRouter = router({
     })
   }),
   getNumberOfWebDevInterestedToday: publicProcedure.query(({ ctx }) => {
-    let date = new Date()
-    let yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
-    let tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
+    const date = new Date()
+    const yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
+    const tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
+
 
     return ctx.prisma.userData.groupBy({
       by: ["id"],
@@ -206,9 +207,9 @@ export const adminRouter = router({
     })
   }),
   getNumberOfCyberSecurityInterestedToday: publicProcedure.query(({ ctx }) => {
-    let date = new Date()
-    let yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
-    let tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
+    const date = new Date()
+    const yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
+    const tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
 
     return ctx.prisma.userData.groupBy({
       by: ["id"],
@@ -229,9 +230,9 @@ export const adminRouter = router({
     })
   }),
   getNumberOfMobileDevInterestedToday: publicProcedure.query(({ ctx }) => {
-    let date = new Date()
-    let yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
-    let tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
+    const date = new Date()
+    const yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
+    const tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
 
     return ctx.prisma.userData.groupBy({
       by: ["id"],
@@ -252,9 +253,9 @@ export const adminRouter = router({
     })
   }),
   getNumberOfDesignInterestedToday: publicProcedure.query(({ ctx }) => {
-    let date = new Date()
-    let yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
-    let tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
+    const date = new Date()
+    const yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
+    const tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
 
     return ctx.prisma.userData.groupBy({
       by: ["id"],
@@ -276,9 +277,9 @@ export const adminRouter = router({
   }),
 
   getNumberOfDataScienceInterestedToday: publicProcedure.query(({ ctx }) => {
-    let date = new Date()
-    let yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
-    let tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
+    const date = new Date()
+    const yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
+    const tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
 
     return ctx.prisma.userData.groupBy({
       by: ["id"],
@@ -301,9 +302,9 @@ export const adminRouter = router({
 
 
   getNumberOfCodingInterestedToday: publicProcedure.query(({ ctx }) => {
-    let date = new Date()
-    let yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
-    let tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
+    const date = new Date()
+    const yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
+    const tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
 
     return ctx.prisma.userData.groupBy({
       by: ["id"],
@@ -324,9 +325,9 @@ export const adminRouter = router({
     })
   }),
   getNumberOfCompanyAssociatedToday: publicProcedure.query(({ ctx }) => {
-    let date = new Date()
-    let yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
-    let tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
+    const date = new Date()
+    const yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
+    const tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
 
     return ctx.prisma.userData.groupBy({
       by: ["id"],
