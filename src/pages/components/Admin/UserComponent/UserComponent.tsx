@@ -32,8 +32,7 @@ interface UserComponentProps {
   },
 
   refetch: () => void,
-  showTicket: (user: any) => void,
-  showEdit: () => void
+
 }
 
 
