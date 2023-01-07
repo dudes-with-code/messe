@@ -16,7 +16,6 @@ export const authOptions: NextAuthOptions = {
     session({ session, user }) {
       if (user) {
 
-        
 
         if (session.user) {
           session.user.id = user.id
@@ -60,7 +59,10 @@ export const authOptions: NextAuthOptions = {
         return {
           id: res.id,
 
-          name: res.name,
+
+          name: res.username,
+
+
 
           email: res.email
         }
