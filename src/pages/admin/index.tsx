@@ -1,15 +1,13 @@
 
 import { useSession, signIn, signOut } from "next-auth/react";
-import { useState } from "react";
-import { createContext } from "vm";
-import UserType from "../../types/apiTypes";
+
 
 import { trpc } from "../../utils/trpc";
 import AdminHeader from "../components/Admin/AdminHeader";
 import DetailTile from "../components/Admin/DetailTile/DetailTile";
-import Modal from "../components/Admin/Modal";
+
 import UserComponent from "../components/Admin/UserComponent/UserComponent";
-import Ticket from "../components/Register/ThankYou/Ticket";
+
 export default function Admin() {
   const allUsers = trpc.adminRouter.getAllUsers.useQuery();
   const todaysUsers = trpc.adminRouter.getAllUsersFromToday.useQuery();
@@ -32,6 +30,9 @@ export default function Admin() {
   const coding = trpc.adminRouter.getNumberOfCodingInterested.useQuery()
   const codingToday = trpc.adminRouter.getNumberOfCodingInterestedToday.useQuery()
   const { data: session } = useSession();
+  setTimeout(() => {
+    refetchUsers()
+  }, 30000)
   function refetchUsers() {
     allUsers.refetch()
   }
@@ -40,7 +41,7 @@ export default function Admin() {
     return <AdminHeader />;
   }
   return (
-    <div>
+    <div className="max-h-screen"> 
       <>
         <AdminHeader />
 
@@ -101,14 +102,16 @@ export default function Admin() {
           <div className="h-0.5 col-start-1 mt-3 col-end-13 bg-gray-500">
           </div>
         </div>
-        {allUsers.data?.map((user) => {
+        <div className="overflow-scroll scrollbar-none   h-full">
+          {allUsers.data?.map((user) => {
           return (<div>
             <UserComponent key={user.id} refetch={refetchUsers} user={user} />
             <div className="col-start-1 col-end-13 h-0.5 bg-gray-300 my-4">
             </div>
 
           </div>)
-        }, [allUsers])}
+        }, [allUsers])}</div>
+        
       </>
       
     </div>

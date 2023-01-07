@@ -55,7 +55,7 @@ export default function UserComponent({ user, refetch }: UserComponentProps) {
   }
   return (
     <>
-      <div className="mx-14 mb-5 grid grid-cols-12">
+      <div className="mx-14 pb-5 grid grid-cols-12">
         <div className="row-span-2 flex h-14 w-14 items-center justify-center overflow-hidden rounded-full">
           <img src={user.picture} className="h-full w-full" alt="UserPicture" />
         </div>
