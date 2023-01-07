@@ -14,6 +14,7 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
-  pageExtensions: ["tsx", "ts"]
+  pageExtensions: ["tsx", "ts"],
+  
 };
 export default config;
