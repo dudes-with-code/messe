@@ -7,6 +7,7 @@ import UserType from "../../types/apiTypes";
 import { trpc } from "../../utils/trpc";
 import AdminHeader from "../components/Admin/AdminHeader";
 import DetailTile from "../components/Admin/DetailTile/DetailTile";
+
 import Modal from "../components/Admin/Modal";
 import UserComponent from "../components/Admin/UserComponent/UserComponent";
 import Ticket from "../components/Register/ThankYou/Ticket";
@@ -36,6 +37,7 @@ export default function Admin() {
     allUsers.refetch()
   }
   
+
   if (!session) {
     return <AdminHeader />;
   }
@@ -43,12 +45,13 @@ export default function Admin() {
     <div>
       <>
         <AdminHeader />
-
+n
         <div className="m-5 grid grid-cols-6 grid-rows-2 gap-3.5">
           <div className="col-start-1 flex col-end-3 baseline-center items-center">
             <h1 className="text-5xl">Hello Admin!</h1>
           </div>
           <div className="col-start-5">
+
             {allUsers.isSuccess &&
               <DetailTile title="Total Users" totalNum={allUsers.data.length} dailyChange={todaysUsers.data?.length} />
             }
@@ -109,6 +112,7 @@ export default function Admin() {
 
           </div>)
         }, [allUsers])}
+
       </>
       
     </div>
