@@ -6,11 +6,16 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { NewUser } from "../../../lib/user/user";
 import { UserContext } from "../../../lib/context/userDataContext";
 import { trpc } from "../../../utils/trpc";
+import { updatedbchangelog } from "../../../server/db/sync/db_sync_worker"
+const fs = require('fs');
+const path = require("path");
 
 interface ButtonProps {
   type: ButtonTypes;
 
 }
+
+
 
 export default function Button({ type }: ButtonProps) {
   const { step, setStep } = useContext(StepperContext);
@@ -38,6 +43,7 @@ export default function Button({ type }: ButtonProps) {
         companyName: user.company.companyName,
       },
     });
+    updatedbchangelog(mutation.data?.id)
     const cleanUser = NewUser;
     setUser(cleanUser);
   }

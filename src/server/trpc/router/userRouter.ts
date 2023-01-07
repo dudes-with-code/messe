@@ -1,3 +1,4 @@
+import { prisma } from "@prisma/client";
 import { z } from "zod";
 import { router, publicProcedure } from "../trpc";
 
@@ -25,7 +26,7 @@ export const userRouter = router({
       })
     )
     .mutation(({ ctx, input }) => {
-      return ctx.prisma.userData.upsert({
+      return  ctx.prisma.userData.upsert({
         where: { mail: input.mail },
         update: {},
         create: {
