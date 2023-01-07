@@ -38,7 +38,7 @@ interface UserComponentProps {
 
 
 
-export default function UserComponent({ user, refetch, showEdit }: UserComponentProps) {
+export default function UserComponent({ user, refetch}: UserComponentProps) {
 
   const userToBeDeleted = trpc.adminRouter.deleteUserByID.useMutation()
 
