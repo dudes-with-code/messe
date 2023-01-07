@@ -1,6 +1,7 @@
 
 import { useSession, signIn, signOut } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { start } from "repl";
 import { createContext } from "vm";
 import UserType from "../../types/apiTypes";
 
@@ -37,7 +38,7 @@ export default function Admin() {
     allUsers.refetch()
   }
   
-
+  //useEffect(()=>{start()}, [])
   if (!session) {
     return <AdminHeader />;
   }
