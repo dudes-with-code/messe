@@ -5,6 +5,7 @@ import { render } from "react-dom";
 import { HiOutlineTicket, HiPencil, HiTrash } from "react-icons/hi"
 import { trpc } from "../../../../utils/trpc";
 import Ticket from "../../Register/ThankYou/Ticket";
+import Modal from "../Modal";
 interface UserComponentProps {
   user: {
     lastName: string;
@@ -38,7 +39,7 @@ interface UserComponentProps {
 
 
 
-export default function UserComponent({ user, refetch, showTicket, showEdit }: UserComponentProps) {
+export default function UserComponent({ user, refetch, showEdit }: UserComponentProps) {
 
   const userToBeDeleted = trpc.adminRouter.deleteUserByID.useMutation()
 
@@ -53,7 +54,19 @@ export default function UserComponent({ user, refetch, showTicket, showEdit }: U
 
 
   }
+  const [showTicketModal, setShowTicketModal] = useState(false)
+  const [showEditModal, setShowEditModal] = useState(false)
+  function toggleEditModal () {
+    setShowEditModal(true)
+  }
+  function showTicket (givenUser: any) {
+    
+      setShowTicketModal(true)
+   
+    
+  }
   return (
+    <>
     <div className="mb-5 mx-14 grid grid-cols-12">
       <div className="w-14 h-14 overflow-hidden rounded-full items-center justify-center flex row-span-2">
         <img src={user.picture} className="w-full h-full" alt="UserPicture" />
@@ -72,7 +85,7 @@ export default function UserComponent({ user, refetch, showTicket, showEdit }: U
         <HiOutlineTicket onClick={() => showTicket(user)} size={22} className="cursor-pointer" color="#2F4550" />
       </div>
       <div className="col-start-11 flex items-center justify-center">
-        <HiPencil onClick={showEdit} className="cursor-pointer" size={22} color="#2F4550" />
+        <HiPencil onClick={toggleEditModal} className="cursor-pointer" size={22} color="#2F4550" />
       </div>
       <div className="col-start-12 flex items-center justify-center">
         <HiTrash onClick={deleteUser} className="cursor-pointer" size={22} color="#2F4550" />
@@ -81,6 +94,9 @@ export default function UserComponent({ user, refetch, showTicket, showEdit }: U
         <Ticket user={user} />
       </div>
     </div>
+    {showTicketModal ? (<Modal state={showTicketModal}  setState={setShowTicketModal} header="Ticket" saveButtonText="Save Ticket" content="test" />) : null }
+      {showEditModal ? (<Modal state={showEditModal}  setState={setShowEditModal} header="Edit User Data" saveButtonText="Save" content="User Data Test" />) : null }
+    </>
   )
 }
 

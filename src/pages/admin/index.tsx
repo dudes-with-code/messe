@@ -33,17 +33,7 @@ export default function Admin() {
   function refetchUsers() {
     allUsers.refetch()
   }
-  const [showTicketModal, setShowTicketModal] = useState(false)
-  const [showEditModal, setShowEditModal] = useState(false)
-  function toggleEditModal () {
-    setShowEditModal(true)
-  }
-  function showTicket (givenUser: any) {
-    
-      setShowTicketModal(true)
-   
-    
-  }
+  
   if (!session) {
     return <AdminHeader />;
   }
@@ -111,15 +101,14 @@ export default function Admin() {
         </div>
         {allUsers.data?.map((user) => {
           return (<div>
-            <UserComponent key={user.id} refetch={refetchUsers} user={user} showTicket={() => showTicket(user)} showEdit={toggleEditModal}/>
+            <UserComponent key={user.id} refetch={refetchUsers} user={user} />
             <div className="col-start-1 col-end-13 h-0.5 bg-gray-300 my-4">
             </div>
 
           </div>)
         }, [allUsers])}
       </>
-      {showTicketModal ? (<Modal state={showTicketModal}  setState={setShowTicketModal} header="Ticket" saveButtonText="Save Ticket" content="test" />) : null }
-      {showEditModal ? (<Modal state={showEditModal}  setState={setShowEditModal} header="Edit User Data" saveButtonText="Save" content="User Data Test" />) : null }
+      
     </div>
   );
 };
