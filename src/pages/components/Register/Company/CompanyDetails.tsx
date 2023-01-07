@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ButtonTypes } from "../../../../types/ButtonTypes";
-import { StepperContext } from "../../../context/StepperContext";
-import { UserContext } from "../../../context/userDataContext";
+import { StepperContext } from "../../../../lib/context/StepperContext";
+
 import Button from "../../Core/Button";
 
 export default function CompanyDetails() {

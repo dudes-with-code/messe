@@ -1,11 +1,10 @@
-import { useContext } from "react";
+
 import { ButtonTypes } from "../../../../types/ButtonTypes";
-import { StepperContext } from "../../../context/StepperContext";
-import TopLeftSVG from "../../BackgroundSVGs/Start/top-left-start";
+
 import Button from "../../Core/Button";
 
 export default function StartStep() {
-  const { step, setStep } = useContext(StepperContext);
+
   return (
     <div>
       <div className="pt-48 pl-8">
