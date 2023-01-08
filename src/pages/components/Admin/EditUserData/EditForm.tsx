@@ -100,13 +100,12 @@ export default function EditForm({ user, setUser }: EditFormProps) {
     }));
   }
   async function handleInterestChange(interest: string) {
-   
     await setUser((user: any) => ({
       ...user,
       interests: {
         ...user.interests,
-        interest: !interest
-      }
+        interest: !interest,
+      },
     }));
   }
   return (
@@ -139,9 +138,8 @@ export default function EditForm({ user, setUser }: EditFormProps) {
             </div>
           </div>
         </div>
-
       </div>
-      
+
       <div className="row-start-2">
         <div className="flex items-center justify-center">
           <h1 className="font-bold">Email</h1>
@@ -161,15 +159,15 @@ export default function EditForm({ user, setUser }: EditFormProps) {
           </div>
         </div>
       </div>
-      
+
       <div className="row-start-3">
-        <div className="flex items-center justify-center align-baseline h-full">
+        <div className="flex h-full items-center justify-center align-baseline">
           <h1 className="font-bold">Photo</h1>
           <div className="ml-16 flex w-full items-center justify-around align-baseline">
             {user.picture != "" && (
               <div>
                 {" "}
-                <div className="flex-col items-center justify-center align-baseline mb-5">
+                <div className="mb-5 flex-col items-center justify-center align-baseline">
                   <button
                     className="p-auto relative top-5 h-5 w-5 rounded-full bg-slate-200 text-xs text-black"
                     onClick={removePicture}
@@ -209,14 +207,72 @@ export default function EditForm({ user, setUser }: EditFormProps) {
           </div>
         </div>
       </div>
-   
+
       <div className="row-start-4">
         <div className="flex items-center justify-center">
           <h1 className="font-bold">Interests</h1>
           <div className="ml-16 flex w-full items-center justify-around">
-            <div className="flex align-baseline">
-             <input type="checkbox" onChange={() => handleInterestChange("webDevelopment")} />
-              
+            <div className="grid grid-cols-3 grid-rows-2">
+              <label className="">
+                WebDev
+                <input
+                  id="webDevelopment"
+                  type="checkbox"
+                  className="ml-2"
+                  onChange={() => handleInterestChange("webDevelopment")}
+                  checked={user.interests?.webDevelopment}
+                />
+              </label>
+              <label className="">
+                Design
+                <input
+                  id="webDevelopment"
+                  type="checkbox"
+                  className="ml-2"
+                  onChange={() => handleInterestChange("webDevelopment")}
+                  checked={user.interests?.design}
+                />
+              </label>
+              <label className="">
+                CyberSec
+                <input
+                  id="webDevelopment"
+                  type="checkbox"
+                  className="ml-2"
+                  onChange={() => handleInterestChange("webDevelopment")}
+                  checked={user.interests?.cyberSecurity}
+                />
+              </label>
+              <label className="">
+                MobileDev
+                <input
+                  id="webDevelopment"
+                  type="checkbox"
+                  className="ml-2"
+                  onChange={() => handleInterestChange("webDevelopment")}
+                  checked={user.interests?.mobileDev}
+                />
+              </label>
+              <label className="">
+                Coding
+                <input
+                  id="webDevelopment"
+                  type="checkbox"
+                  className="ml-2"
+                  onChange={() => handleInterestChange("webDevelopment")}
+                  checked={user.interests?.coding}
+                />
+              </label>
+              <label className="">
+                DataScience
+                <input
+                  id="webDevelopment"
+                  type="checkbox"
+                  className="ml-2"
+                  onChange={() => handleInterestChange("webDevelopment")}
+                  checked={user.interests?.dataScience}
+                />
+              </label>
             </div>
           </div>
         </div>
