@@ -4,6 +4,7 @@ import { trpc } from "../../utils/trpc";
 import AdminHeader from "../components/Admin/AdminHeader";
 import DetailTile from "../components/Admin/DetailTile/DetailTile";
 
+
 import UserComponent from "../components/Admin/UserComponent/UserComponent";
 
 export default function Admin() {
@@ -42,6 +43,7 @@ export default function Admin() {
     allUsers.refetch();
   }
 
+
   if (!session) {
     return <AdminHeader />;
   }
@@ -49,12 +51,13 @@ export default function Admin() {
     <div className="max-h-screen">
       <>
         <AdminHeader />
-
+n
         <div className="m-5 grid grid-cols-6 grid-rows-2 gap-3.5">
           <div className="baseline-center col-start-1 col-end-3 flex items-center">
             <h1 className="text-5xl">Hello Admin!</h1>
           </div>
           <div className="col-start-5">
+
             {allUsers.isSuccess && (
               <DetailTile
                 title="Total Users"
@@ -62,6 +65,7 @@ export default function Admin() {
                 dailyChange={todaysUsers.data?.length}
               />
             )}
+
           </div>
           <div className="col-start-6">
             {allAssociates.isSuccess && todaysAssociates.isSuccess && (
@@ -153,6 +157,17 @@ export default function Admin() {
             [allUsers]
           )}
         </div>
+
+        {allUsers.data?.map((user) => {
+          return (<div>
+            <UserComponent key={user.id} refetch={refetchUsers} user={user} />
+            <div className="col-start-1 col-end-13 h-0.5 bg-gray-300 my-4">
+            </div>
+
+          </div>)
+        }, [allUsers])}
+
+
       </>
     </div>
   );

@@ -214,9 +214,11 @@ export const adminRouter = router({
     })
   }),
   getNumberOfCyberSecurityInterestedToday: publicProcedure.query(({ ctx }) => {
+
     const date = new Date()
     const yesterday = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
     const tomorrow = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() + 1)
+
 
     return ctx.prisma.userData.groupBy({
       by: ["id"],
