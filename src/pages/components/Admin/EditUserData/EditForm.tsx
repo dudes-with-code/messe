@@ -99,12 +99,20 @@ export default function EditForm({ user, setUser }: EditFormProps) {
       picture: "",
     }));
   }
-  async function handleInterestChange(interest: string) {
+  const interests = {
+    webDevelopment: user.interests?.webDevelopment,
+    cyberSecurity: user.interests?.cyberSecurity,
+    mobileDev: user.interests?.mobileDev,
+    design: user.interests?.design,
+    dataScience: user.interests?.dataScience,
+    coding: user.interests?.coding
+
+  }
+  async function handleInterestChange() {
     await setUser((user: any) => ({
       ...user,
       interests: {
-        ...user.interests,
-        interest: !interest,
+        ...interests
       },
     }));
   }
@@ -219,8 +227,9 @@ export default function EditForm({ user, setUser }: EditFormProps) {
                   id="webDevelopment"
                   type="checkbox"
                   className="ml-2"
-                  onChange={() => handleInterestChange("webDevelopment")}
-                  checked={user.interests?.webDevelopment}
+                  onClick={() => interests.webDevelopment = !interests.webDevelopment}
+                  onChange={handleInterestChange}
+                  checked={interests.webDevelopment}
                 />
               </label>
               <label className="">
@@ -229,8 +238,9 @@ export default function EditForm({ user, setUser }: EditFormProps) {
                   id="webDevelopment"
                   type="checkbox"
                   className="ml-2"
-                  onChange={() => handleInterestChange("webDevelopment")}
-                  checked={user.interests?.design}
+                  onClick={() => interests.design = !interests.design}
+                  onChange={handleInterestChange}
+                  checked={interests.design}
                 />
               </label>
               <label className="">
@@ -239,8 +249,9 @@ export default function EditForm({ user, setUser }: EditFormProps) {
                   id="webDevelopment"
                   type="checkbox"
                   className="ml-2"
-                  onChange={() => handleInterestChange("webDevelopment")}
-                  checked={user.interests?.cyberSecurity}
+                  onClick={() => interests.cyberSecurity = !interests.cyberSecurity}
+                  onChange={handleInterestChange}
+                  checked={interests.cyberSecurity}
                 />
               </label>
               <label className="">
@@ -249,8 +260,9 @@ export default function EditForm({ user, setUser }: EditFormProps) {
                   id="webDevelopment"
                   type="checkbox"
                   className="ml-2"
-                  onChange={() => handleInterestChange("webDevelopment")}
-                  checked={user.interests?.mobileDev}
+                  onClick={() => interests.mobileDev = !interests.mobileDev}
+                  onChange={handleInterestChange}
+                  checked={interests.mobileDev}
                 />
               </label>
               <label className="">
@@ -259,8 +271,9 @@ export default function EditForm({ user, setUser }: EditFormProps) {
                   id="webDevelopment"
                   type="checkbox"
                   className="ml-2"
-                  onChange={() => handleInterestChange("webDevelopment")}
-                  checked={user.interests?.coding}
+                  onClick={() => interests.coding = !interests.coding}
+                  onChange={handleInterestChange}
+                  checked={interests.coding}
                 />
               </label>
               <label className="">
@@ -269,8 +282,9 @@ export default function EditForm({ user, setUser }: EditFormProps) {
                   id="webDevelopment"
                   type="checkbox"
                   className="ml-2"
-                  onChange={() => handleInterestChange("webDevelopment")}
-                  checked={user.interests?.dataScience}
+                  onClick={() => interests.dataScience = !interests.dataScience}
+                  onChange={handleInterestChange}
+                  checked={interests.dataScience}
                 />
               </label>
             </div>

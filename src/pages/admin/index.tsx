@@ -51,7 +51,7 @@ export default function Admin() {
     <div className="max-h-screen">
       <>
         <AdminHeader />
-n
+
         <div className="m-5 grid grid-cols-6 grid-rows-2 gap-3.5">
           <div className="baseline-center col-start-1 col-end-3 flex items-center">
             <h1 className="text-5xl">Hello Admin!</h1>
