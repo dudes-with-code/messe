@@ -7,6 +7,8 @@ import { trpc } from "../../../../utils/trpc";
 import Ticket from "../../Register/ThankYou/Ticket";
 import EditForm from "../EditUserData/EditForm";
 import Modal from "../Modal";
+import ReprintableTicket from "../ReprintableTicket/ReprintableTicket";
+import TicketModal from "../TicketModal";
 interface UserComponentProps {
   user: {
     lastName: string;
@@ -53,6 +55,23 @@ export default function UserComponent({ user, refetch }: UserComponentProps) {
   function showTicket() {
     setShowTicketModal(true);
   }
+  function saveTicket() {
+    const ticket = document.getElementById("ticket");
+    if (ticket != null) {
+      html2canvas(ticket).then((canvas) => {
+        const imgData = canvas.toDataURL("image/png");
+        const pdf = new jsPDF({
+          orientation: "landscape",
+          format: [270, 95],
+        });
+        //@ts-ignore
+        pdf.addImage(imgData, "JPEG", 0, 0);
+        // pdf.output('dataurlnewwindow');
+        pdf.save("Ticket.pdf");
+      });
+    }
+  }
+  
   return (
     <>
       <div className="mx-14 pb-5 grid grid-cols-12">
@@ -96,12 +115,12 @@ export default function UserComponent({ user, refetch }: UserComponentProps) {
           />
         </div>
         {showTicketModal ? (
-          <Modal
+          <TicketModal
             state={showTicketModal}
             setState={setShowTicketModal}
             header="Ticket"
             saveButtonText="Save Ticket"
-            content="test"
+            content={<ReprintableTicket  user={user}/>}
             user={user}
             refetch={refetch}
           />
