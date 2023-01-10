@@ -158,16 +158,6 @@ export default function Admin() {
           )}
         </div>
 
-        {allUsers.data?.map((user) => {
-          return (<div>
-            <UserComponent key={user.id} refetch={refetchUsers} user={user} />
-            <div className="col-start-1 col-end-13 h-0.5 bg-gray-300 my-4">
-            </div>
-
-          </div>)
-        }, [allUsers])}
-
-
       </>
     </div>
   );
