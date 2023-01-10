@@ -68,7 +68,7 @@ export default function Modal({
                   >
                     Close
                   </button>
-                  <div onClick={updateUser}>
+                  <div onClick={saveButtonFunction}>
                     <button
                       className="mr-1 mb-1 rounded bg-[#2F4550] px-6 py-3 text-sm font-bold uppercase text-[#F4F4F9] shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none active:bg-emerald-600"
                       type="button"
