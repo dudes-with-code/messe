@@ -1,11 +1,17 @@
-import { prisma } from "@prisma/client";
+import { observable } from "@trpc/server/observable";
+import { User } from "next-auth";
+import { EventEmitter } from "stream";
 import { z } from "zod";
 import { router, publicProcedure } from "../trpc";
 
+const ee = new EventEmitter()
+
 export const adminRouter = router({
+  
   changeSpecificUserData: publicProcedure
     .input(
       z.object({
+        
         mail: z.string(),
         lastName: z.string(),
         firstName: z.string(),
@@ -34,7 +40,7 @@ export const adminRouter = router({
           firstName: input.firstName,
           picture: input.picture,
           interests: {
-            create: {
+            update: {
               webDevelopment: input.interests.webDevelopment,
               cyberSecurity: input.interests.cyberSecurity,
               mobileDev: input.interests.mobileDev,
@@ -44,7 +50,7 @@ export const adminRouter = router({
             },
           },
           company: {
-            create: {
+            update: {
               isAssociated: input.company.isAssociated,
               companyEmail: input.company.companyEmail,
               companyName: input.company.companyName,

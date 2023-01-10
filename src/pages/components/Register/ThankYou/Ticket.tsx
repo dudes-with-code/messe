@@ -14,7 +14,9 @@ interface TicketProps {
 import { useContext } from "react";
 import { UserContext } from "../../../../lib/context/userDataContext";
 
-export default function Ticket() {
+export default function Ticket(
+
+) {
   const { user} = useContext(UserContext);
 
   return (
