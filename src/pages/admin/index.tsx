@@ -43,7 +43,6 @@ export default function Admin() {
     allUsers.refetch();
   }
 
-
   if (!session) {
     return <AdminHeader />;
   }

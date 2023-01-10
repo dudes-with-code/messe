@@ -12,6 +12,8 @@ interface ButtonProps {
 
 }
 
+
+
 export default function Button({ type }: ButtonProps) {
   const { step, setStep } = useContext(StepperContext);
   const { user, setUser } = useContext(UserContext);
