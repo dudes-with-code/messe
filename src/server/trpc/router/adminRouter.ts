@@ -1,3 +1,4 @@
+import { prisma } from "@prisma/client";
 import { z } from "zod";
 import { router, publicProcedure } from "../trpc";
 
@@ -54,7 +55,7 @@ export const adminRouter = router({
     }),
   deleteUserByID: publicProcedure
     .input(z.object({ id: z.number() }))
-    .mutation(({ ctx, input }) => {
+    .mutation(({ ctx, input }) => {      
       const deleteInterests = ctx.prisma.interests.delete({
         where: {
           userID: input.id

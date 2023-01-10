@@ -3,7 +3,8 @@ const lockfile = require('proper-lockfile');
 const mariadb = require('mariadb');
 const fs = require('fs');
 const path = require("path");
-/*
+
+
 mariadb.createConnection({
      host: 'localhost', 
      database: 'messe',
@@ -14,20 +15,26 @@ mariadb.createConnection({
     // Execute a query/do whatever you need with the connection object here.
     console.log(await conn.query('select * from Admin'))
 });
-fs.writeFile(path.resolve(__dirname, "../../../../res/dbchangedlog.txt"), "test", (err: any) => {
-    if (err) {
-      console.error(err)
-    }
-})
+
+mariadb.createConnection({
+  host: 'localhost', 
+  database: 'company',
+  user:'user', 
+  password: 'password',
+  port: 4833
+}).then(async (conn: any) => {
+ // Execute a query/do whatever you need with the connection object here.
+ console.log(await conn.query('select * from Admin'))
+});
+
+
+export {}
 
 
 
 
-*/
 
-
-
-
+/*
 /// Writes index of changed index to changelog
 export async function updatedbchangelog(id: any) {
   const fs = require('fs');
@@ -66,3 +73,4 @@ export async function updatedbchangelog(id: any) {
   });
   return
 }
+*/
