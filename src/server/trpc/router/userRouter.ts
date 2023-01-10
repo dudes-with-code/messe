@@ -1,6 +1,10 @@
+import { observable } from "@trpc/server/observable";
+import { User } from "next-auth";
+import { EventEmitter } from "stream";
 import { z } from "zod";
 import { router, publicProcedure } from "../trpc";
 
+const ee = new EventEmitter();
 export const userRouter = router({
   createUser: publicProcedure
     .input(
@@ -53,4 +57,4 @@ export const userRouter = router({
         },
       });
     }),
-    });
+});
