@@ -1,38 +1,32 @@
-const lockfile = require('proper-lockfile');
+const mariadb = require("mariadb");
 
-const mariadb = require('mariadb');
-const fs = require('fs');
-const path = require("path");
-
-
-mariadb.createConnection({
-     host: 'localhost', 
-     database: 'messe',
-     user:'user', 
-     password: 'password',
-     port: 4832
-}).then(async (conn: any) => {
+mariadb
+  .createConnection({
+    host: "localhost",
+    database: "messe",
+    user: "user",
+    password: "password",
+    port: 4832,
+  })
+  .then(async (conn: any) => {
     // Execute a query/do whatever you need with the connection object here.
-    console.log(await conn.query('select * from Admin'))
-});
+    console.log(await conn.query("select * from Admin"));
+  });
 
-mariadb.createConnection({
-  host: 'localhost', 
-  database: 'company',
-  user:'user', 
-  password: 'password',
-  port: 4833
-}).then(async (conn: any) => {
- // Execute a query/do whatever you need with the connection object here.
- console.log(await conn.query('select * from Admin'))
-});
+mariadb
+  .createConnection({
+    host: "localhost",
+    database: "company",
+    user: "user",
+    password: "password",
+    port: 4833,
+  })
+  .then(async (conn: any) => {
+    // Execute a query/do whatever you need with the connection object here.
+    console.log(await conn.query("select * from Admin"));
+  });
 
-
-export {}
-
-
-
-
+export {};
 
 /*
 /// Writes index of changed index to changelog

@@ -3,12 +3,21 @@ import jsPDF from "jspdf";
 import { useState } from "react";
 import { render } from "react-dom";
 import { HiOutlineTicket, HiPencil, HiTrash } from "react-icons/hi";
-import { trpc } from "../../../../utils/trpc";
+import { trpc } from "../../../utils/trpc";
 import Ticket from "../../Register/ThankYou/Ticket";
-import EditForm from "../EditUserData/EditForm";
+import { loadGetInitialProps } from "next/dist/shared/lib/utils";
 import Modal from "../Modal";
-import ReprintableTicket from "../ReprintableTicket/ReprintableTicket";
+
 import TicketModal from "../TicketModal";
+import dynamic from "next/dynamic";
+const DynamicEditForm = dynamic(() => import("../EditUserData/EditForm"), {
+  ssr: false,
+});
+const DynamicReprintableTicket = dynamic(
+  () => import("../ReprintableTicket/ReprintableTicket"),
+  { ssr: false }
+);
+
 interface UserComponentProps {
   user: {
     lastName: string;
@@ -38,7 +47,7 @@ interface UserComponentProps {
 }
 
 export default function UserComponent({ user, refetch }: UserComponentProps) {
-  const [changedUser, setChangedUser] = useState(user)
+  const [changedUser, setChangedUser] = useState(user);
   const userToBeDeleted = trpc.adminRouter.deleteUserByID.useMutation();
 
   async function deleteUser() {
@@ -71,10 +80,10 @@ export default function UserComponent({ user, refetch }: UserComponentProps) {
       });
     }
   }
-  
+
   return (
     <>
-      <div className="mx-14 pb-5 grid grid-cols-12">
+      <div className="mx-14 grid grid-cols-12 pb-5">
         <div className="row-span-2 flex h-14 w-14 items-center justify-center overflow-hidden rounded-full">
           <img src={user.picture} className="h-full w-full" alt="UserPicture" />
         </div>
@@ -120,7 +129,7 @@ export default function UserComponent({ user, refetch }: UserComponentProps) {
             setState={setShowTicketModal}
             header="Ticket"
             saveButtonText="Save Ticket"
-            content={<ReprintableTicket  user={user}/>}
+            content={<DynamicReprintableTicket user={user} />}
             user={user}
             refetch={refetch}
           />
@@ -132,9 +141,10 @@ export default function UserComponent({ user, refetch }: UserComponentProps) {
             header="Edit User Data"
             saveButtonText="Save"
             user={changedUser}
-            content={<EditForm user={changedUser} setUser={setChangedUser} />}
+            content={
+              <DynamicEditForm user={changedUser} setUser={setChangedUser} />
+            }
             refetch={refetch}
-
           />
         ) : null}
       </div>

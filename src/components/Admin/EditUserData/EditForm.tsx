@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useRef, useState } from "react";
 import { AiOutlineCloudUpload } from "react-icons/ai";
-import type UserType from "../../../../types/apiTypes";
-
+import type UserType from "../../../types/apiTypes";
+import { loadGetInitialProps } from "next/dist/shared/lib/utils";
 interface EditFormProps {
   user: {
     lastName: string;
@@ -52,8 +52,8 @@ interface EditFormProps {
     }>
   >;
 }
-
-export default function EditForm({ user, setUser }: EditFormProps) {
+loadGetInitialProps(EditForm, {});
+function EditForm({ user, setUser }: EditFormProps) {
   async function handleFirstNameChange(
     event: React.ChangeEvent<HTMLInputElement>
   ) {
@@ -105,14 +105,13 @@ export default function EditForm({ user, setUser }: EditFormProps) {
     mobileDev: user.interests?.mobileDev,
     design: user.interests?.design,
     dataScience: user.interests?.dataScience,
-    coding: user.interests?.coding
-
-  }
+    coding: user.interests?.coding,
+  };
   async function handleInterestChange() {
     await setUser((user: any) => ({
       ...user,
       interests: {
-        ...interests
+        ...interests,
       },
     }));
   }
@@ -227,7 +226,9 @@ export default function EditForm({ user, setUser }: EditFormProps) {
                   id="webDevelopment"
                   type="checkbox"
                   className="ml-2"
-                  onClick={() => interests.webDevelopment = !interests.webDevelopment}
+                  onClick={() =>
+                    (interests.webDevelopment = !interests.webDevelopment)
+                  }
                   onChange={handleInterestChange}
                   checked={interests.webDevelopment}
                 />
@@ -238,7 +239,7 @@ export default function EditForm({ user, setUser }: EditFormProps) {
                   id="webDevelopment"
                   type="checkbox"
                   className="ml-2"
-                  onClick={() => interests.design = !interests.design}
+                  onClick={() => (interests.design = !interests.design)}
                   onChange={handleInterestChange}
                   checked={interests.design}
                 />
@@ -249,7 +250,9 @@ export default function EditForm({ user, setUser }: EditFormProps) {
                   id="webDevelopment"
                   type="checkbox"
                   className="ml-2"
-                  onClick={() => interests.cyberSecurity = !interests.cyberSecurity}
+                  onClick={() =>
+                    (interests.cyberSecurity = !interests.cyberSecurity)
+                  }
                   onChange={handleInterestChange}
                   checked={interests.cyberSecurity}
                 />
@@ -260,7 +263,7 @@ export default function EditForm({ user, setUser }: EditFormProps) {
                   id="webDevelopment"
                   type="checkbox"
                   className="ml-2"
-                  onClick={() => interests.mobileDev = !interests.mobileDev}
+                  onClick={() => (interests.mobileDev = !interests.mobileDev)}
                   onChange={handleInterestChange}
                   checked={interests.mobileDev}
                 />
@@ -271,7 +274,7 @@ export default function EditForm({ user, setUser }: EditFormProps) {
                   id="webDevelopment"
                   type="checkbox"
                   className="ml-2"
-                  onClick={() => interests.coding = !interests.coding}
+                  onClick={() => (interests.coding = !interests.coding)}
                   onChange={handleInterestChange}
                   checked={interests.coding}
                 />
@@ -282,7 +285,9 @@ export default function EditForm({ user, setUser }: EditFormProps) {
                   id="webDevelopment"
                   type="checkbox"
                   className="ml-2"
-                  onClick={() => interests.dataScience = !interests.dataScience}
+                  onClick={() =>
+                    (interests.dataScience = !interests.dataScience)
+                  }
                   onChange={handleInterestChange}
                   checked={interests.dataScience}
                 />
@@ -324,3 +329,5 @@ export default function EditForm({ user, setUser }: EditFormProps) {
     </div>
   );
 }
+
+export default EditForm;

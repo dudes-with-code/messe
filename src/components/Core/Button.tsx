@@ -1,18 +1,15 @@
-import { useContext} from "react";
-import { ButtonTypes } from "../../../types/ButtonTypes";
-import { StepperContext } from "../../../lib/context/StepperContext";
+import { useContext } from "react";
+import { ButtonTypes } from "../../types/ButtonTypes";
+import { StepperContext } from "../../lib/context/StepperContext";
 import { AiOutlineArrowRight } from "react-icons/ai";
 
-import { NewUser } from "../../../lib/user/user";
-import { UserContext } from "../../../lib/context/userDataContext";
-import { trpc } from "../../../utils/trpc";
+import { NewUser } from "../../lib/user/user";
+import { UserContext } from "../../lib/context/userDataContext";
+import { trpc } from "../../utils/trpc";
 
 interface ButtonProps {
   type: ButtonTypes;
-
 }
-
-
 
 export default function Button({ type }: ButtonProps) {
   const { step, setStep } = useContext(StepperContext);
@@ -21,7 +18,7 @@ export default function Button({ type }: ButtonProps) {
   function CompleteRegistration() {
     setStep(1);
 
-     mutation.mutate({
+    mutation.mutate({
       mail: user.mail,
       firstName: user.firstName,
       lastName: user.lastName,
@@ -40,7 +37,7 @@ export default function Button({ type }: ButtonProps) {
         companyName: user.company.companyName,
       },
     });
-    
+
     const cleanUser = NewUser;
     setUser(cleanUser);
   }

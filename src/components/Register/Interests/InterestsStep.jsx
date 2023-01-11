@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { UserContext } from "../../../../lib/context/userDataContext";
+import { UserContext } from "../../../lib/context/userDataContext";
 
 export default function InterestsStep() {
   const { user, setUser } = useContext(UserContext);

@@ -1,18 +1,16 @@
-import { useContext} from "react";
-import type UserType from "../../../../types/apiTypes";
-import { UserContext } from "../../../../lib/context/userDataContext";
+import { useContext } from "react";
+import type UserType from "../../../types/apiTypes";
+import { UserContext } from "../../../lib/context/userDataContext";
 
 export default function CompanyDetailsForm() {
   const { user, setUser } = useContext(UserContext);
-  const company = user.company
-  async function handleNameChange(
-    event: React.ChangeEvent<HTMLInputElement>
-  ) {
+  const company = user.company;
+  async function handleNameChange(event: React.ChangeEvent<HTMLInputElement>) {
     await setUser((user: UserType) => ({
       ...user,
       company: {
         ...company,
-        companyName: event.target.value
+        companyName: event.target.value,
       },
     }));
   }
@@ -22,7 +20,7 @@ export default function CompanyDetailsForm() {
       company: {
         ...company,
         isAssociated: true,
-        companyEmail: event.target.value
+        companyEmail: event.target.value,
       },
     }));
   }
@@ -53,4 +51,3 @@ export default function CompanyDetailsForm() {
     </div>
   );
 }
-
