@@ -1,6 +1,6 @@
-import { useContext} from "react";
-import type UserType from "../../../../types/apiTypes";
-import { UserContext } from "../../../../lib/context/userDataContext"
+import { useContext } from "react";
+import type UserType from "../../../types/apiTypes";
+import { UserContext } from "../../../lib/context/userDataContext";
 
 export default function PersonalDataStep() {
   const { user, setUser } = useContext(UserContext);

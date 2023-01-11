@@ -1,14 +1,6 @@
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
 import React, { ReactNode, SetStateAction } from "react";
-import UserType from "../../../types/apiTypes";
-import { trpc } from "../../../utils/trpc";
-import {
-  Page,
-  Document,
-} from "@react-pdf/renderer";
-
-import ReprintableTicket from "./ReprintableTicket/ReprintableTicket";
+import UserType from "../../types/apiTypes";
+import { trpc } from "../../utils/trpc";
 interface ModalProps {
   state: boolean;
   setState: (value: SetStateAction<boolean>) => void;
@@ -19,34 +11,31 @@ interface ModalProps {
   user?: any;
   refetch: () => void;
 }
-export default function TicketModal({
+export default function Modal({
+  state,
   setState,
   header,
+  content,
   saveButtonFunction,
   saveButtonText,
   user,
-
+  refetch,
 }: ModalProps) {
-  function printTicket() {
-    const ticket = document.getElementById("ticket");
-    if (ticket != null) {
-      html2canvas(ticket).then((canvas) => {
-        const imgData = canvas.toDataURL("image/png");
-        const pdf = new jsPDF({
-          orientation: "landscape",
-          format: [100, 40],
-        });
-        //@ts-ignore
-        pdf.addImage(imgData, "JPEG", 0, 0);
-        //pdf.output('dataurlnewwindow');
-        pdf.save("Ticket.pdf");
-      });
-    }
+  const updatedUser = trpc.adminRouter.changeSpecificUserData.useMutation();
+  function updateUser() {
+    updatedUser.mutate({
+      ...user,
+      interests: {
+        ...user.interests,
+      },
+      company: {
+        ...user.company,
+      },
+    });
+    setTimeout(() => {
+      refetch();
+    }, 1000);
   }
-      function closeModal () {
-        printTicket()
-
-      }
   return (
     <>
       <>
@@ -69,35 +58,7 @@ export default function TicketModal({
                 </button>
               </div>
               {/*body*/}
-              <div className="relative flex-auto p-6" id="ticket">
-                <div id="">
-                <div id="t">
-        <Document>
-          <Page>
-            <div className="baseline-center flex max-w-xs">
-              <img
-                src={user.picture}
-                width={64}
-                height={64}
-                className="rounded-md"
-              />
-              <div className="pl-5">
-                <p className="text-2xl font-bold">
-                  {user.lastName}, {user.firstName}
-                </p>
-                {user.company.isAssociated && (
-                  <p>
-                    <span className="font-bold">Company:</span>{" "}
-                    {user.company.companyName}
-                  </p>
-                )}
-              </div>
-            </div>
-          </Page>
-        </Document>
-      </div>
-                </div>
-              </div>
+              <div className="relative flex-auto p-6">{content}</div>
               {/*footer*/}
               <div className="flex items-center justify-end rounded-b border-t border-solid border-[##F1FFE7] p-6">
                 <button
@@ -107,11 +68,11 @@ export default function TicketModal({
                 >
                   Close
                 </button>
-                <div>
+                <div onClick={saveButtonFunction}>
                   <button
                     className="mr-1 mb-1 rounded bg-[#2F4550] px-6 py-3 text-sm font-bold uppercase text-[#F4F4F9] shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none active:bg-emerald-600"
                     type="button"
-                    onClick={printTicket}
+                    onClick={() => setState(false)}
                   >
                     {saveButtonText}
                   </button>

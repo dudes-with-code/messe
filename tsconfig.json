@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -26,11 +22,9 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs",
-    "src/pages/components/Register/Stepper/Step.tsx",
-    "src/pages/components/Register/Interests/InterestsStep.jsx",
-    "src/pages/components/Register/ThankYou/TicketCreator.jsx"
+    "src/components/Register/Stepper/Step.tsx",
+    "src/components/Register/Interests/InterestsStep.jsx",
+    "src/components/Register/ThankYou/TicketCreator.jsx"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

@@ -1,5 +1,5 @@
 import NextAuth, { type NextAuthOptions } from "next-auth";
-import CredentialsProvider from 'next-auth/providers/credentials'
+import CredentialsProvider from "next-auth/providers/credentials";
 // Prisma adapter for NextAuth, optional and can be removed
 
 import { prisma } from "../../../server/db/client";
@@ -9,20 +9,17 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     jwt({ token, user }) {
       if (user) {
-        token.id = user.id
+        token.id = user.id;
       }
-      return token
+      return token;
     },
     session({ session, user }) {
       if (user) {
-
-
         if (session.user) {
-          session.user.id = user.id
-          session.user.name = user.name
-        }
-        else {
-          alert("alarm")
+          session.user.id = user.id;
+          session.user.name = user.name;
+        } else {
+          alert("alarm");
         }
       }
       return session;
@@ -33,40 +30,36 @@ export const authOptions: NextAuthOptions = {
     secret: process.env.NEXTAUTH_SECRET,
   },
   session: {
-    strategy: "jwt"
+    strategy: "jwt",
   },
   providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
         username: { label: "Username", type: "text", placeholder: "username" },
-        password: { label: "Password", type: "password" }
+        password: { label: "Password", type: "password" },
       },
 
       async authorize(credentials) {
         const res = await prisma.admin.findFirst({
-
           where: {
-            name: credentials?.username
-          }
-        })
+            name: credentials?.username,
+          },
+        });
         if (!res) {
-          return null
+          return null;
         }
         if (credentials?.password != res.password) {
-          return null
+          return null;
         }
         return {
           id: res.id,
 
+          name: res.name,
 
-          name: res.username,
-
-
-
-          email: res.email
-        }
-      }
+          email: res.email,
+        };
+      },
     }),
     // ...add more providers here
   ],

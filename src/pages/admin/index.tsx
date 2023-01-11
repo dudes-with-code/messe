@@ -1,11 +1,10 @@
 import { useSession, signIn, signOut } from "next-auth/react";
 
 import { trpc } from "../../utils/trpc";
-import AdminHeader from "../components/Admin/AdminHeader";
-import DetailTile from "../components/Admin/DetailTile/DetailTile";
+import AdminHeader from "../../components/Admin/AdminHeader";
+import DetailTile from "../../components/Admin/DetailTile/DetailTile";
 
-
-import UserComponent from "../components/Admin/UserComponent/UserComponent";
+import UserComponent from "../../components/Admin/UserComponent/UserComponent";
 
 export default function Admin() {
   const allUsers = trpc.adminRouter.getAllUsers.useQuery();
@@ -56,7 +55,6 @@ export default function Admin() {
             <h1 className="text-5xl">Hello Admin!</h1>
           </div>
           <div className="col-start-5">
-
             {allUsers.isSuccess && (
               <DetailTile
                 title="Total Users"
@@ -64,7 +62,6 @@ export default function Admin() {
                 dailyChange={todaysUsers.data?.length}
               />
             )}
-
           </div>
           <div className="col-start-6">
             {allAssociates.isSuccess && todaysAssociates.isSuccess && (
@@ -140,23 +137,23 @@ export default function Admin() {
           <div className="col-start-1 col-end-13 mt-3 h-0.5 bg-gray-500"></div>
         </div>
         <div className="scrollbar-none h-full   overflow-scroll">
-          {allUsers.data?.map(
-            (user) => {
-              return (
-                <div>
-                  <UserComponent
-                    key={user.id}
-                    refetch={refetchUsers}
-                    user={user}
-                  />
-                  <div className="col-start-1 col-end-13 my-4 h-0.5 bg-gray-300"></div>
-                </div>
-              );
-            },
-            [allUsers]
-          )}
+          {allUsers.isSuccess &&
+            allUsers.data?.map(
+              (user) => {
+                return (
+                  <div key={user.id}>
+                    <UserComponent
+                      key={user.id}
+                      refetch={refetchUsers}
+                      user={user}
+                    />
+                    <div className="col-start-1 col-end-13 my-4 h-0.5 bg-gray-300"></div>
+                  </div>
+                );
+              },
+              [allUsers]
+            )}
         </div>
-
       </>
     </div>
   );

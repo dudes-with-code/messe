@@ -1,23 +1,14 @@
-import {
-  Page,
-
-  Document,
-
-} from "@react-pdf/renderer";
-
+import { Page, Document } from "@react-pdf/renderer";
 
 interface TicketProps {
-  user: any
+  user: any;
 }
 
-
 import { useContext } from "react";
-import { UserContext } from "../../../../lib/context/userDataContext";
+import { UserContext } from "../../../lib/context/userDataContext";
 
-export default function Ticket(
-
-) {
-  const { user} = useContext(UserContext);
+export default function Ticket() {
+  const { user } = useContext(UserContext);
 
   return (
     <div className="">

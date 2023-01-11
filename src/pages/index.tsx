@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { UserContext } from "../lib/context/userDataContext";
 import { NewUser } from "../lib/user/user";
-import { StepperContext } from "../lib/context/StepperContext"
-import RegisterStepper from "./components/Register/Stepper/RegisterStepper";
-import Step from "./components/Register/Stepper/Step";
+import { StepperContext } from "../lib/context/StepperContext";
+import RegisterStepper from "../components/Register/Stepper/RegisterStepper";
+import Step from "../components/Register/Stepper/Step";
 import { ButtonTypes } from "../types/ButtonTypes";
-import Button from "./components/Core/Button";
-import TopLeftSVG from "./components/BackgroundSVGs/Start/top-left-start";
-import TopMiddleSVG from "./components/BackgroundSVGs/Start/top-middle-start";
-import TopRightSVG from "./components/BackgroundSVGs/Start/top-right-start";
-import BottomRightSVG from "./components/BackgroundSVGs/Steps/bottom-right-step";
-import CircularProgress from "./components/Core/CircularProgress";
+import Button from "../components/Core/Button";
+import TopLeftSVG from "../components/BackgroundSVGs/Start/top-left-start";
+import TopMiddleSVG from "../components/BackgroundSVGs/Start/top-middle-start";
+import TopRightSVG from "../components/BackgroundSVGs/Start/top-right-start";
+import BottomRightSVG from "../components/BackgroundSVGs/Steps/bottom-right-step";
+import CircularProgress from "../components/Core/CircularProgress";
 import { HiOutlineTicket } from "react-icons/hi";
 
 const Home = () => {
@@ -30,10 +30,12 @@ const Home = () => {
                 </div>
                 <div className="top-0 flex w-full justify-between">
                   {(step === 2 || step === 3 || step === 4 || step === 6) && (
-                    <Button type={ButtonTypes.Back} />
+                    <div className="text-[#586f7c]">
+                      <Button type={ButtonTypes.Back} />
+                    </div>
                   )}
                   {(step === 2 || step === 3 || step === 4 || step === 6) && (
-                    <CircularProgress >
+                    <CircularProgress>
                       <Button type={ButtonTypes.Next} />
                     </CircularProgress>
                   )}

@@ -1,18 +1,16 @@
-
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { useContext} from "react";
+import { useContext } from "react";
 
+import { ButtonTypes } from "../../../types/ButtonTypes";
 
-import { ButtonTypes } from "../../../../types/ButtonTypes";
-
-import { UserContext } from "../../../../lib/context/userDataContext";
+import { UserContext } from "../../../lib/context/userDataContext";
 
 import Button from "../../Core/Button";
 import Ticket from "./Ticket";
 
 export default function ThankYou() {
-  const { user} = useContext(UserContext);
+  const { user } = useContext(UserContext);
   function printTicket() {
     const ticket = document.getElementById("ticket");
     if (ticket != null) {
