@@ -1,0 +1,73 @@
+version: '3.0'
+ 
+services:
+  cdb:
+    image: mariadb:10.7
+    container_name: cdb
+    environment:
+      MYSQL_ROOT_PASSWORD: "${COMPANY_MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${COMPANY_MYSQL_DATABASE}"
+      MYSQL_USER: "${COMPANY_MYSQL_USER}"
+      MYSQL_PASSWORD: "${COMPANY_MYSQL_PASSWORD}"
+    restart: always
+    ports:
+      - "${COMPANY_MYSQL_PORT}:3306"
+    volumes:
+      - cdbdata:/var/lib/company/mysql
+      
+  cphpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: cpma
+    links:
+      - cdb
+    environment:
+      PMA_HOST: cdb
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - ${COMPANY_PHPMYADMIN_PORT}:80
+
+
+  db:
+    image: mariadb:10.7
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+    restart: always
+    ports:
+      - "${MYSQL_PORT}:3306"
+    volumes:
+      - dbdata:/var/lib/local/mysql
+      
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - ${PHPMYADMIN_PORT}:80
+
+
+  app:
+    ports:
+      - "${APP_PORT}:3000"
+    image: messeapp-docker
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+      - NEXTAUTH_URL=${NEXTAUTH_URL}
+      - DISCORD_CLIENT_ID=${DISCORD_CLIENT_ID}
+      - DISCORD_CLIENT_SECRET=${DISCORD_CLIENT_SECRET}
+
+volumes:
+  dbdata:
+  cdbdata:
